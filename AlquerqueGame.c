@@ -289,7 +289,7 @@ static void FNiniciarPiezasJ1(){ //Inicializa aleatoriamente las piezas del Juga
 
         FNcolocarPiezas();
         columna++;
-        if(columna > 11){
+        if(columna > 4){
             columna = 0;
             fila +=1;
         }
@@ -483,24 +483,24 @@ void FNmostrarPantallaCreditos(){
 
 }
 void FNmostrarPantallaAyuda(){
-//GtkWidget *dialog;
-//    GdkPixbuf *logo;
-//    GError *error=NULL;
-//
-//    dialog= gtk_about_dialog_new();
-////  logo=gdk_pixbuf_new_from_file("tablero.jpg",&error);
-//    if(error==NULL){
-//        gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog), logo);
-//    }
-//    gtk_window_set_icon_from_file(GTK_WINDOW(dialog), "tablero.jpg", NULL);
-//    gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(dialog), "Alquerque");
-//    gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), "V. 0.1");
-//    gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog),"(C) 2020 FONDDA_TEAM");
-//
-//
-//    gtk_dialog_run(GTK_DIALOG(dialog));
-//
-//    gtk_widget_destroy(dialog);
+GtkWidget *dialog;
+    GdkPixbuf *logo;
+    GError *error=NULL;
+
+    dialog= gtk_about_dialog_new();
+//  logo=gdk_pixbuf_new_from_file("tablero.jpg",&error);
+    if(error==NULL){
+        gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog), logo);
+    }
+    gtk_window_set_icon_from_file(GTK_WINDOW(dialog), "tablero.jpg", NULL);
+    gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(dialog), "Alquerque");
+    gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), "V. 0.1");
+    gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog),"(C) 2020 FONDDA_TEAM");
+
+
+    gtk_dialog_run(GTK_DIALOG(dialog));
+
+    gtk_widget_destroy(dialog);
 
 }
 
@@ -675,10 +675,9 @@ void FNcrearPiezas(){
 
     FBlanca4.Pieza = gtk_button_new_with_label("F4");
     FBlanca4.Imagen = gtk_image_new_from_file("FichaBlanca.jpg");
-    gtk_button_set_always_show_image(GTK_BUTTON(FBlanca1.Pieza), TRUE);
+    gtk_button_set_always_show_image(GTK_BUTTON(FBlanca4.Pieza), TRUE);
     gtk_button_set_image(GTK_BUTTON(FBlanca4.Pieza), FBlanca1.Imagen);
     gtk_button_set_relief(GTK_BUTTON(FBlanca4.Pieza), GTK_RELIEF_NORMAL);
-
 
     FBlanca5.Pieza = gtk_button_new_with_label("F5");
     FBlanca5.Imagen = gtk_image_new_from_file("FichaBlanca.jpg");
@@ -1316,4 +1315,3 @@ void habilitarOPmovimientosJ2(){ //Habilita las opciones de movimiento del Jugad
     gtk_widget_show_all(FBlanca12.movimiento.OPmoverIzquierda);
 
 }
-

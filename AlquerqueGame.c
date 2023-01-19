@@ -676,7 +676,7 @@ void FNcrearPiezas(){
     FBlanca4.Pieza = gtk_button_new_with_label("F4");
     FBlanca4.Imagen = gtk_image_new_from_file("FichaBlanca.jpg");
     gtk_button_set_always_show_image(GTK_BUTTON(FBlanca4.Pieza), TRUE);
-    gtk_button_set_image(GTK_BUTTON(FBlanca4.Pieza), FBlanca1.Imagen);
+    gtk_button_set_image(GTK_BUTTON(FBlanca4.Pieza), FBlanca4.Imagen);
     gtk_button_set_relief(GTK_BUTTON(FBlanca4.Pieza), GTK_RELIEF_NORMAL);
 
     FBlanca5.Pieza = gtk_button_new_with_label("F5");

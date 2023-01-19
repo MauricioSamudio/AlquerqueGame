@@ -456,220 +456,220 @@ void FNcargaCoordenadasTablero(){ //Carga las coordenadas X e Y del layout en un
         }
         Yinicial+=Ydif;
     }*/
+//
+//    int pos = 0;
+//
+//    for(int i=0;i<8;i++){
+//        pos = 10 + 113 * i;
+//        for(int j = 0; j<8 ;j++ ){
+//            coordenadasTableroX[j][i] = pos;
+//        }
+//
+//        for(int j = 0; j<8 ;j++ ){
+//            coordenadasTableroY[i][j] = pos;
+//        }
+//    }
 
-    int pos = 0;
 
-    for(int i=0;i<5;i++){
-        pos = 10 + 113 * i;
-        for(int j = 0; j<5 ;j++ ){
-            coordenadasTableroX[j][i] = pos;
-        }
+    //Fila 0 del tablero
+    coordenadasTableroX[0][0] = 10;
+    coordenadasTableroY[0][0] = 10;
 
-        for(int j = 0; j<5 ;j++ ){
-            coordenadasTableroY[i][j] = pos;
-        }
-    }
+    coordenadasTableroX[0][1] = 122;
+    coordenadasTableroY[0][1] = 10;
 
+    coordenadasTableroX[0][2] = 235;
+    coordenadasTableroY[0][2] = 10;
 
-//    //Fila 0 del tablero
-//    coordenadasTableroX[0][0] = 10;
-//    coordenadasTableroY[0][0] = 10;
-//
-//    coordenadasTableroX[0][1] = 122;
-//    coordenadasTableroY[0][1] = 10;
-//
-//    coordenadasTableroX[0][2] = 235;
-//    coordenadasTableroY[0][2] = 10;
-//
-//    coordenadasTableroX[0][3] = 348;
-//    coordenadasTableroY[0][3] = 10;
-//
-//    coordenadasTableroX[0][4] = 460;
-//    coordenadasTableroY[0][4] = 10;
-//
-//    coordenadasTableroX[0][5] = 572;
-//    coordenadasTableroY[0][5] = 10;
-//
-//    coordenadasTableroX[0][6] = 683;
-//    coordenadasTableroY[0][6] = 10;
-//
-//    coordenadasTableroX[0][7] = 793;
-//    coordenadasTableroY[0][7] = 10;
-//
-//    //Fila 1 del tablero
-//    coordenadasTableroX[1][0] = 10;
-//    coordenadasTableroY[1][0] = 123;
-//
-//    coordenadasTableroX[1][1] = 122;
-//    coordenadasTableroY[1][1] = 123;
-//
-//    coordenadasTableroX[1][2] = 235;
-//    coordenadasTableroY[1][2] = 123;
-//
-//    coordenadasTableroX[1][3] = 348;
-//    coordenadasTableroY[1][3] = 123;
-//
-//    coordenadasTableroX[1][4] = 460;
-//    coordenadasTableroY[1][4] = 123;
-//
-//    coordenadasTableroX[1][5] = 572;
-//    coordenadasTableroY[1][5] = 123;
-//
-//    coordenadasTableroX[1][6] = 683;
-//    coordenadasTableroY[1][6] = 123;
-//
-//    coordenadasTableroX[1][7] = 793;
-//    coordenadasTableroY[1][7] = 123;
-//
-//    //Fila 2 del tablero
-//    coordenadasTableroX[2][0] = 10;
-//    coordenadasTableroY[2][0] = 234;
-//
-//    coordenadasTableroX[2][1] = 122;
-//    coordenadasTableroY[2][1] = 234;
-//
-//    coordenadasTableroX[2][2] = 235;
-//    coordenadasTableroY[2][2] = 234;
-//
-//    coordenadasTableroX[2][3] = 348;
-//    coordenadasTableroY[2][3] = 234;
-//
-//    coordenadasTableroX[2][4] = 460;
-//    coordenadasTableroY[2][4] = 234;
-//
-//    coordenadasTableroX[2][5] = 572;
-//    coordenadasTableroY[2][5] = 234;
-//
-//    coordenadasTableroX[2][6] = 683;
-//    coordenadasTableroY[2][6] = 234;
-//
-//    coordenadasTableroX[2][7] = 793;
-//    coordenadasTableroY[2][7] = 234;
-//
-//    //Fila 3 del tablero
-//    coordenadasTableroX[3][0] = 10;
-//    coordenadasTableroY[3][0] = 345;
-//
-//    coordenadasTableroX[3][1] = 122;
-//    coordenadasTableroY[3][1] = 345;
-//
-//    coordenadasTableroX[3][2] = 235;
-//    coordenadasTableroY[3][2] = 345;
-//
-//    coordenadasTableroX[3][3] = 348;
-//    coordenadasTableroY[3][3] = 345;
-//
-//    coordenadasTableroX[3][4] = 460;
-//    coordenadasTableroY[3][4] = 345;
-//
-//    coordenadasTableroX[3][5] = 572;
-//    coordenadasTableroY[3][5] = 345;
-//
-//    coordenadasTableroX[3][6] = 683;
-//    coordenadasTableroY[3][6] = 345;
-//
-//    coordenadasTableroX[3][7] = 793;
-//    coordenadasTableroY[3][7] = 345;
-//
-//    //Fila 4 del tablero
-//    coordenadasTableroX[4][0] = 10;
-//    coordenadasTableroY[4][0] = 458;
-//
-//    coordenadasTableroX[4][1] = 122;
-//    coordenadasTableroY[4][1] = 458;
-//
-//    coordenadasTableroX[4][2] = 235;
-//    coordenadasTableroY[4][2] = 458;
-//
-//    coordenadasTableroX[4][3] = 348;
-//    coordenadasTableroY[4][3] = 458;
-//
-//    coordenadasTableroX[4][4] = 460;
-//    coordenadasTableroY[4][4] = 458;
-//
-//    coordenadasTableroX[4][5] = 572;
-//    coordenadasTableroY[4][5] = 458;
-//
-//    coordenadasTableroX[4][6] = 683;
-//    coordenadasTableroY[4][6] = 458;
-//
-//    coordenadasTableroX[4][7] = 793;
-//    coordenadasTableroY[4][7] = 458;
-//
-//    //Fila 5 del tablero
-//    coordenadasTableroX[5][0] = 10;
-//    coordenadasTableroY[5][0] = 572;
-//
-//    coordenadasTableroX[5][1] = 122;
-//    coordenadasTableroY[5][1] = 572;
-//
-//    coordenadasTableroX[5][2] = 235;
-//    coordenadasTableroY[5][2] = 572;
-//
-//    coordenadasTableroX[5][3] = 348;
-//    coordenadasTableroY[5][3] = 572;
-//
-//    coordenadasTableroX[5][4] = 460;
-//    coordenadasTableroY[5][4] = 572;
-//
-//    coordenadasTableroX[5][5] = 572;
-//    coordenadasTableroY[5][5] = 572;
-//
-//    coordenadasTableroX[5][6] = 683;
-//    coordenadasTableroY[5][6] = 572;
-//
-//    coordenadasTableroX[5][7] = 793;
-//    coordenadasTableroY[5][7] = 572;
-//
-//    //Fila 6 del tablero
-//    coordenadasTableroX[6][0] = 10;
-//    coordenadasTableroY[6][0] = 685;
-//
-//    coordenadasTableroX[6][1] = 122;
-//    coordenadasTableroY[6][1] = 685;
-//
-//    coordenadasTableroX[6][2] = 235;
-//    coordenadasTableroY[6][2] = 685;
-//
-//    coordenadasTableroX[6][3] = 348;
-//    coordenadasTableroY[6][3] = 685;
-//
-//    coordenadasTableroX[6][4] = 460;
-//    coordenadasTableroY[6][4] = 685;
-//
-//    coordenadasTableroX[6][5] = 572;
-//    coordenadasTableroY[6][5] = 685;
-//
-//    coordenadasTableroX[6][6] = 683;
-//    coordenadasTableroY[6][6] = 685;
-//
-//    coordenadasTableroX[6][7] = 793;
-//    coordenadasTableroY[6][7] = 685;
-//
-//    //Fila 7 del tablero
-//    coordenadasTableroX[7][0] = 10;
-//    coordenadasTableroY[7][0] = 795;
-//
-//    coordenadasTableroX[7][1] = 122;
-//    coordenadasTableroY[7][1] = 795;
-//
-//    coordenadasTableroX[7][2] = 235;
-//    coordenadasTableroY[7][2] = 795;
-//
-//    coordenadasTableroX[7][3] = 348;
-//    coordenadasTableroY[7][3] = 795;
-//
-//    coordenadasTableroX[7][4] = 460;
-//    coordenadasTableroY[7][4] = 795;
-//
-//    coordenadasTableroX[7][5] = 572;
-//    coordenadasTableroY[7][5] = 795;
-//
-//    coordenadasTableroX[7][6] = 683;
-//    coordenadasTableroY[7][6] = 795;
-//
-//    coordenadasTableroX[7][7] = 793;
-//    coordenadasTableroY[7][7] = 795;
+    coordenadasTableroX[0][3] = 348;
+    coordenadasTableroY[0][3] = 10;
+
+    coordenadasTableroX[0][4] = 460;
+    coordenadasTableroY[0][4] = 10;
+
+    coordenadasTableroX[0][5] = 572;
+    coordenadasTableroY[0][5] = 10;
+
+    coordenadasTableroX[0][6] = 683;
+    coordenadasTableroY[0][6] = 10;
+
+    coordenadasTableroX[0][7] = 793;
+    coordenadasTableroY[0][7] = 10;
+
+    //Fila 1 del tablero
+    coordenadasTableroX[1][0] = 10;
+    coordenadasTableroY[1][0] = 123;
+
+    coordenadasTableroX[1][1] = 122;
+    coordenadasTableroY[1][1] = 123;
+
+    coordenadasTableroX[1][2] = 235;
+    coordenadasTableroY[1][2] = 123;
+
+    coordenadasTableroX[1][3] = 348;
+    coordenadasTableroY[1][3] = 123;
+
+    coordenadasTableroX[1][4] = 460;
+    coordenadasTableroY[1][4] = 123;
+
+    coordenadasTableroX[1][5] = 572;
+    coordenadasTableroY[1][5] = 123;
+
+    coordenadasTableroX[1][6] = 683;
+    coordenadasTableroY[1][6] = 123;
+
+    coordenadasTableroX[1][7] = 793;
+    coordenadasTableroY[1][7] = 123;
+
+    //Fila 2 del tablero
+    coordenadasTableroX[2][0] = 10;
+    coordenadasTableroY[2][0] = 234;
+
+    coordenadasTableroX[2][1] = 122;
+    coordenadasTableroY[2][1] = 234;
+
+    coordenadasTableroX[2][2] = 235;
+    coordenadasTableroY[2][2] = 234;
+
+    coordenadasTableroX[2][3] = 348;
+    coordenadasTableroY[2][3] = 234;
+
+    coordenadasTableroX[2][4] = 460;
+    coordenadasTableroY[2][4] = 234;
+
+    coordenadasTableroX[2][5] = 572;
+    coordenadasTableroY[2][5] = 234;
+
+    coordenadasTableroX[2][6] = 683;
+    coordenadasTableroY[2][6] = 234;
+
+    coordenadasTableroX[2][7] = 793;
+    coordenadasTableroY[2][7] = 234;
+
+    //Fila 3 del tablero
+    coordenadasTableroX[3][0] = 10;
+    coordenadasTableroY[3][0] = 345;
+
+    coordenadasTableroX[3][1] = 122;
+    coordenadasTableroY[3][1] = 345;
+
+    coordenadasTableroX[3][2] = 235;
+    coordenadasTableroY[3][2] = 345;
+
+    coordenadasTableroX[3][3] = 348;
+    coordenadasTableroY[3][3] = 345;
+
+    coordenadasTableroX[3][4] = 460;
+    coordenadasTableroY[3][4] = 345;
+
+    coordenadasTableroX[3][5] = 572;
+    coordenadasTableroY[3][5] = 345;
+
+    coordenadasTableroX[3][6] = 683;
+    coordenadasTableroY[3][6] = 345;
+
+    coordenadasTableroX[3][7] = 793;
+    coordenadasTableroY[3][7] = 345;
+
+    //Fila 4 del tablero
+    coordenadasTableroX[4][0] = 10;
+    coordenadasTableroY[4][0] = 458;
+
+    coordenadasTableroX[4][1] = 122;
+    coordenadasTableroY[4][1] = 458;
+
+    coordenadasTableroX[4][2] = 235;
+    coordenadasTableroY[4][2] = 458;
+
+    coordenadasTableroX[4][3] = 348;
+    coordenadasTableroY[4][3] = 458;
+
+    coordenadasTableroX[4][4] = 460;
+    coordenadasTableroY[4][4] = 458;
+
+    coordenadasTableroX[4][5] = 572;
+    coordenadasTableroY[4][5] = 458;
+
+    coordenadasTableroX[4][6] = 683;
+    coordenadasTableroY[4][6] = 458;
+
+    coordenadasTableroX[4][7] = 793;
+    coordenadasTableroY[4][7] = 458;
+
+    //Fila 5 del tablero
+    coordenadasTableroX[5][0] = 10;
+    coordenadasTableroY[5][0] = 572;
+
+    coordenadasTableroX[5][1] = 122;
+    coordenadasTableroY[5][1] = 572;
+
+    coordenadasTableroX[5][2] = 235;
+    coordenadasTableroY[5][2] = 572;
+
+    coordenadasTableroX[5][3] = 348;
+    coordenadasTableroY[5][3] = 572;
+
+    coordenadasTableroX[5][4] = 460;
+    coordenadasTableroY[5][4] = 572;
+
+    coordenadasTableroX[5][5] = 572;
+    coordenadasTableroY[5][5] = 572;
+
+    coordenadasTableroX[5][6] = 683;
+    coordenadasTableroY[5][6] = 572;
+
+    coordenadasTableroX[5][7] = 793;
+    coordenadasTableroY[5][7] = 572;
+
+    //Fila 6 del tablero
+    coordenadasTableroX[6][0] = 10;
+    coordenadasTableroY[6][0] = 685;
+
+    coordenadasTableroX[6][1] = 122;
+    coordenadasTableroY[6][1] = 685;
+
+    coordenadasTableroX[6][2] = 235;
+    coordenadasTableroY[6][2] = 685;
+
+    coordenadasTableroX[6][3] = 348;
+    coordenadasTableroY[6][3] = 685;
+
+    coordenadasTableroX[6][4] = 460;
+    coordenadasTableroY[6][4] = 685;
+
+    coordenadasTableroX[6][5] = 572;
+    coordenadasTableroY[6][5] = 685;
+
+    coordenadasTableroX[6][6] = 683;
+    coordenadasTableroY[6][6] = 685;
+
+    coordenadasTableroX[6][7] = 793;
+    coordenadasTableroY[6][7] = 685;
+
+    //Fila 7 del tablero
+    coordenadasTableroX[7][0] = 10;
+    coordenadasTableroY[7][0] = 795;
+
+    coordenadasTableroX[7][1] = 122;
+    coordenadasTableroY[7][1] = 795;
+
+    coordenadasTableroX[7][2] = 235;
+    coordenadasTableroY[7][2] = 795;
+
+    coordenadasTableroX[7][3] = 348;
+    coordenadasTableroY[7][3] = 795;
+
+    coordenadasTableroX[7][4] = 460;
+    coordenadasTableroY[7][4] = 795;
+
+    coordenadasTableroX[7][5] = 572;
+    coordenadasTableroY[7][5] = 795;
+
+    coordenadasTableroX[7][6] = 683;
+    coordenadasTableroY[7][6] = 795;
+
+    coordenadasTableroX[7][7] = 793;
+    coordenadasTableroY[7][7] = 795;
 
 }
 

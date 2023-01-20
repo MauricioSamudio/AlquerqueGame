@@ -12,6 +12,10 @@
 #define ABAJO      20
 #define DERECHA    30
 #define IZQUIERDA  40
+#define DIAGONAL_DERECHA_ABAJO 50
+#define DIAGONAL_IZQUIERDA_ABAJO 60
+#define DIAGONAL_DERECHA_ARRIBA 70
+#define DIAGONAL_IZQUIERDA_ARRIBA 80
 
 #define Negra1 101
 #define Negra2 102
@@ -55,7 +59,7 @@ int queJugador[100][100]; //Matriz analoga a posicionPiezas, en esta se guarda i
 int piezasJ1[12]; //Guarda las posiciones random tomadas para no repetirlas, se utiliza para mandar a una función una pieza aleatoria.
 int piezasJ2[12]; //Guarda las posiciones random tomadas para no repetirlas, se utiliza para mandar a una función una pieza aleatoria.
 int fila = 0, columna = 0; //Índices varios para iterar en loops
-int sentidos[5] = {ARRIBA, ABAJO, DERECHA, IZQUIERDA}; //Se carga en un arreglo los sentidos de los movimientos
+int sentidos[9] = {ARRIBA, ABAJO, DERECHA, IZQUIERDA, DIAGONAL_DERECHA_ABAJO,DIAGONAL_IZQUIERDA_ABAJO,DIAGONAL_DERECHA_ARRIBA,DIAGONAL_IZQUIERDA_ARRIBA}; //Se carga en un arreglo los sentidos de los movimientos
 int i,j,I,J,K,L;
 int limiteInferior = 0, limiteSuperior = 11; //Guardan los "limites superior e inferior" de los vectores de las piezas, para obtener las posiciones aleatorias.
 int randomPos; //Guarda la posicion a la hora de recorrer los vectores "piezasJ1" y "piezasJ2".
@@ -81,6 +85,7 @@ void FNconectarOPMovimientosPiezas();
 void FNmoverAbajo(GtkWidget *pieza);
 void FNmoverArriba(GtkWidget *pieza);
 void FNmoverDerecha(GtkWidget *pieza);
+void FNmoverDiagonalDerecha(GtkWidget *pieza);
 void FNmoverIzquierda(GtkWidget *pieza);
 void FNmostrarOPmenusPiezas();
 void manejadorTurnoJ1(GtkToggleButton *turno);
@@ -118,24 +123,28 @@ struct Movimientos { //Guarda las opciones, labels, iconos y contenedores de los
     GtkWidget *OPmoverArriba;
     GtkWidget *OPmoverAbajo;
     GtkWidget *OPmoverDerecha;
+    GtkWidget *OPmoverDiagonalDerecha;
     GtkWidget *OPmoverIzquierda;
     GtkWidget *OPcancelar;
 
     GtkWidget *LBLmoverArriba;
     GtkWidget *LBLmoverAbajo;
     GtkWidget *LBLmoverDerecha;
+    GtkWidget *LBLmoverDiagonalDerecha;
     GtkWidget *LBLmoverIzquierda;
     GtkWidget *LBLcancelar;
 
     GtkWidget *BOXmoverArriba;
     GtkWidget *BOXmoverAbajo;
     GtkWidget *BOXmoverDerecha;
+    GtkWidget *BOXmoverDiagonalDerecha;
     GtkWidget *BOXmoverIzquierda;
     GtkWidget *BOXcancelar;
 
     GtkWidget *ICOmoverArriba;
     GtkWidget *ICOmoverAbajo;
     GtkWidget *ICOmoverDerecha;
+    GtkWidget *ICOmoverDiagonalDerecha;
     GtkWidget *ICOmoverIzquierda;
     GtkWidget *ICOcancelar;
 
@@ -211,6 +220,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra1.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra1.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra1.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra1.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra1.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra2.Menu                                 = gtk_menu_new();
@@ -219,6 +229,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra2.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra2.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra2.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra2.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra2.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra3.Menu                                 = gtk_menu_new();
@@ -227,6 +238,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra3.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra3.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra3.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra3.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra3.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra4.Menu                                 = gtk_menu_new();
@@ -235,6 +247,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra4.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra4.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra4.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra4.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra4.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra5.Menu                                 = gtk_menu_new();
@@ -243,6 +256,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra5.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra5.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra5.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra5.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra5.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra6.Menu                                 = gtk_menu_new();
@@ -251,6 +265,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra6.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra6.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra6.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra6.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra6.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra7.Menu                                 = gtk_menu_new();
@@ -259,6 +274,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra7.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra7.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra7.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra7.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra7.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra8.Menu                                 = gtk_menu_new();
@@ -267,6 +283,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra8.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra8.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra8.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra8.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra8.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra9.Menu                                 = gtk_menu_new();
@@ -275,6 +292,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra9.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra9.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra9.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra9.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra9.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra10.Menu                                 = gtk_menu_new();
@@ -283,6 +301,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra10.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra10.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra10.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra10.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra10.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra11.Menu                                 = gtk_menu_new();
@@ -291,6 +310,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra11.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra11.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra11.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra11.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra11.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FNegra12.Menu                                 = gtk_menu_new();
@@ -299,6 +319,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FNegra12.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FNegra12.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FNegra12.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FNegra12.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FNegra12.movimiento.OPcancelar                = gtk_menu_item_new();
 
     ///Jugador 2
@@ -309,6 +330,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca1.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca1.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca1.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca1.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca1.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca2.Menu                                 = gtk_menu_new();
@@ -317,6 +339,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca2.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca2.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca2.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca2.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca2.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca3.Menu                                 = gtk_menu_new();
@@ -325,6 +348,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca3.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca3.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca3.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca3.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca3.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca4.Menu                                 = gtk_menu_new();
@@ -333,6 +357,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca4.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca4.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca4.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca4.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca4.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca5.Menu                                 = gtk_menu_new();
@@ -341,6 +366,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca5.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca5.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca5.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca5.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca5.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca6.Menu                                 = gtk_menu_new();
@@ -349,6 +375,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca6.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca6.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca6.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca6.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca6.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca7.Menu                                 = gtk_menu_new();
@@ -357,6 +384,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca7.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca7.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca7.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca7.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca7.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca8.Menu                                 = gtk_menu_new();
@@ -365,6 +393,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca8.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca8.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca8.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca8.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca8.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca9.Menu                                 = gtk_menu_new();
@@ -373,6 +402,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca9.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca9.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca9.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca9.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca9.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca10.Menu                                 = gtk_menu_new();
@@ -381,6 +411,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca10.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca10.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca10.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca10.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca10.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca11.Menu                                 = gtk_menu_new();
@@ -389,6 +420,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca11.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca11.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca11.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca11.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca11.movimiento.OPcancelar                = gtk_menu_item_new();
 
     FBlanca12.Menu                                 = gtk_menu_new();
@@ -397,6 +429,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     FBlanca12.movimiento.OPmoverAbajo              = gtk_menu_item_new();
     FBlanca12.movimiento.OPmoverDerecha            = gtk_menu_item_new();
     FBlanca12.movimiento.OPmoverIzquierda          = gtk_menu_item_new();
+    FBlanca12.movimiento.OPmoverDiagonalDerecha    = gtk_menu_item_new();
     FBlanca12.movimiento.OPcancelar                = gtk_menu_item_new();
 
 //-------------------------------AGREGANDO-------------------------------
@@ -405,72 +438,84 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra1.Menu), FNegra1.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra1.Menu), FNegra1.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra1.Menu), FNegra1.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra1.Menu), FNegra1.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra1.Menu), FNegra1.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra1.Menu), FNegra1.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra2.Menu), FNegra2.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra2.Menu), FNegra2.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra2.Menu), FNegra2.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra2.Menu), FNegra2.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra2.Menu), FNegra2.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra2.Menu), FNegra2.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra3.Menu), FNegra3.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra3.Menu), FNegra3.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra3.Menu), FNegra3.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra3.Menu), FNegra3.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra3.Menu), FNegra3.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra3.Menu), FNegra3.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra4.Menu), FNegra4.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra4.Menu), FNegra4.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra4.Menu), FNegra4.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra4.Menu), FNegra4.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra4.Menu), FNegra4.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra4.Menu), FNegra4.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra5.Menu), FNegra5.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra5.Menu), FNegra5.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra5.Menu), FNegra5.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra5.Menu), FNegra5.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra5.Menu), FNegra5.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra5.Menu), FNegra5.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra6.Menu), FNegra6.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra6.Menu), FNegra6.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra6.Menu), FNegra6.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra6.Menu), FNegra6.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra6.Menu), FNegra6.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra6.Menu), FNegra6.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra7.Menu), FNegra7.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra7.Menu), FNegra7.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra7.Menu), FNegra7.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra7.Menu), FNegra7.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra7.Menu), FNegra7.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra7.Menu), FNegra7.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra8.Menu), FNegra8.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra8.Menu), FNegra8.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra8.Menu), FNegra8.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra8.Menu), FNegra8.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra8.Menu), FNegra8.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra8.Menu), FNegra8.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra9.Menu), FNegra9.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra9.Menu), FNegra9.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra9.Menu), FNegra9.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra9.Menu), FNegra9.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra9.Menu), FNegra9.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra9.Menu), FNegra9.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra10.Menu), FNegra10.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra10.Menu), FNegra10.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra10.Menu), FNegra10.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra10.Menu), FNegra10.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra10.Menu), FNegra10.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra10.Menu), FNegra10.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra11.Menu), FNegra11.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra11.Menu), FNegra11.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra11.Menu), FNegra11.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra11.Menu), FNegra11.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra11.Menu), FNegra11.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra11.Menu), FNegra11.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra12.Menu), FNegra12.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra12.Menu), FNegra12.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra12.Menu), FNegra12.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FNegra12.Menu), FNegra12.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra12.Menu), FNegra12.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FNegra12.Menu), FNegra12.movimiento.OPcancelar);
 
@@ -478,72 +523,84 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca1.Menu), FBlanca1.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca1.Menu), FBlanca1.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca1.Menu), FBlanca1.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca1.Menu), FBlanca1.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca1.Menu), FBlanca1.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca1.Menu), FBlanca1.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca2.Menu), FBlanca2.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca2.Menu), FBlanca2.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca2.Menu), FBlanca2.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca2.Menu), FBlanca2.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca2.Menu), FBlanca2.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca2.Menu), FBlanca2.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca3.Menu), FBlanca3.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca3.Menu), FBlanca3.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca3.Menu), FBlanca3.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca3.Menu), FBlanca3.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca3.Menu), FBlanca3.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca3.Menu), FBlanca3.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca4.Menu), FBlanca4.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca4.Menu), FBlanca4.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca4.Menu), FBlanca4.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca4.Menu), FBlanca4.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca4.Menu), FBlanca4.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca4.Menu), FBlanca4.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca5.Menu), FBlanca5.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca5.Menu), FBlanca5.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca5.Menu), FBlanca5.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca5.Menu), FBlanca5.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca5.Menu), FBlanca5.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca5.Menu), FBlanca5.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca6.Menu), FBlanca6.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca6.Menu), FBlanca6.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca6.Menu), FBlanca6.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca6.Menu), FBlanca6.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca6.Menu), FBlanca6.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca6.Menu), FBlanca6.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca7.Menu), FBlanca7.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca7.Menu), FBlanca7.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca7.Menu), FBlanca7.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca7.Menu), FBlanca7.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca7.Menu), FBlanca7.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca7.Menu), FBlanca7.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca8.Menu), FBlanca8.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca8.Menu), FBlanca8.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca8.Menu), FBlanca8.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca8.Menu), FBlanca8.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca8.Menu), FBlanca8.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca8.Menu), FBlanca8.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca9.Menu), FBlanca9.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca9.Menu), FBlanca9.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca9.Menu), FBlanca9.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca9.Menu), FBlanca9.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca9.Menu), FBlanca9.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca9.Menu), FBlanca9.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca10.Menu), FBlanca10.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca10.Menu), FBlanca10.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca10.Menu), FBlanca10.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca10.Menu), FBlanca10.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca10.Menu), FBlanca10.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca10.Menu), FBlanca10.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca11.Menu), FBlanca11.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca11.Menu), FBlanca11.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca11.Menu), FBlanca11.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca11.Menu), FBlanca11.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca11.Menu), FBlanca11.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca11.Menu), FBlanca11.movimiento.OPcancelar);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca12.Menu), FBlanca12.movimiento.OPmoverArriba);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca12.Menu), FBlanca12.movimiento.OPmoverAbajo);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca12.Menu), FBlanca12.movimiento.OPmoverDerecha);
+    gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca12.Menu), FBlanca12.movimiento.OPmoverDiagonalDerecha);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca12.Menu), FBlanca12.movimiento.OPmoverIzquierda);
     gtk_menu_shell_append(GTK_MENU_SHELL(FBlanca12.Menu), FBlanca12.movimiento.OPcancelar);
 
@@ -605,7 +662,30 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
 
 //Creando caja contenedora BOX para MOVER ARRIBA de todas las piezas
     FNegra1.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra2.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra3.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra4.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra5.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra6.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra7.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra8.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra9.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra10.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra11.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra12.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+
+    FBlanca1.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca2.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca3.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca4.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     FBlanca5.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca6.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca7.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca8.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca9.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca10.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca11.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca12.movimiento.BOXmoverArriba = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
 
 //Cargando los iconos a la caja contenedora BOX
     gtk_container_add(GTK_CONTAINER(FNegra1.movimiento.BOXmoverArriba) ,  FNegra1.movimiento.ICOmoverArriba);
@@ -1181,6 +1261,170 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     gtk_container_add(GTK_CONTAINER(FBlanca11.movimiento.OPmoverIzquierda) ,  FBlanca11.movimiento.BOXmoverIzquierda);
     gtk_container_add(GTK_CONTAINER(FBlanca12.movimiento.OPmoverIzquierda) ,  FBlanca12.movimiento.BOXmoverIzquierda);
 
+//------------------------------Diagonal Derecha------------------------------------------------------------
+
+//Cargando iconos MOVER DERECHA para todas las piezas
+    FNegra1.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra2.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra3.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra4.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra5.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra6.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra7.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra8.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra9.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra10.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra11.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FNegra12.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+
+    FBlanca1.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca2.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca3.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca4.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca5.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca6.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca7.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca8.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca9.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca10.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca11.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+    FBlanca12.movimiento.ICOmoverDiagonalDerecha = gtk_image_new_from_file("moverDiagonalDerecha.png");
+
+//Cargando LABEL MOVER ARRIBA ABAJO para todas las piezas
+    FNegra1.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra2.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra3.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra4.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra5.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra6.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra7.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra8.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra9.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra10.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra11.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FNegra12.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+
+    FBlanca1.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca2.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca3.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca4.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca5.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca6.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca7.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca8.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca9.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca10.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca11.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+    FBlanca12.movimiento.LBLmoverDiagonalDerecha = gtk_label_new(" Mover Diagonal Derecha ");
+
+//Creando caja contenedora BOX para MOVER ABAJO de todas las piezas
+    FNegra1.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra2.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra3.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra4.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra5.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra6.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra7.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra8.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra9.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra10.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra11.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FNegra12.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+
+    FBlanca1.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca2.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca3.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca4.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca5.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca6.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca7.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca8.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca9.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca10.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca11.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+    FBlanca12.movimiento.BOXmoverDiagonalDerecha = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
+
+//Cargando los iconos a la caja contenedora BOX
+    gtk_container_add(GTK_CONTAINER(FNegra1.movimiento.BOXmoverDiagonalDerecha) ,  FNegra1.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra2.movimiento.BOXmoverDiagonalDerecha) ,  FNegra2.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra3.movimiento.BOXmoverDiagonalDerecha) ,  FNegra3.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra4.movimiento.BOXmoverDiagonalDerecha) ,  FNegra4.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra5.movimiento.BOXmoverDiagonalDerecha) ,  FNegra5.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra6.movimiento.BOXmoverDiagonalDerecha) ,  FNegra6.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra7.movimiento.BOXmoverDiagonalDerecha) ,  FNegra7.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra8.movimiento.BOXmoverDiagonalDerecha) ,  FNegra8.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra9.movimiento.BOXmoverDiagonalDerecha) ,  FNegra9.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra10.movimiento.BOXmoverDiagonalDerecha) ,  FNegra10.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra11.movimiento.BOXmoverDiagonalDerecha) ,  FNegra11.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra12.movimiento.BOXmoverDiagonalDerecha) ,  FNegra12.movimiento.ICOmoverDiagonalDerecha);
+
+    gtk_container_add(GTK_CONTAINER(FBlanca1.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca1.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca2.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca2.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca3.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca3.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca4.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca4.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca5.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca5.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca6.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca6.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca7.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca7.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca8.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca8.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca9.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca9.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca10.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca10.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca11.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca11.movimiento.ICOmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca12.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca12.movimiento.ICOmoverDiagonalDerecha);
+
+//Cargando los Labels a la caja contenedora BOX
+    gtk_container_add(GTK_CONTAINER(FNegra1.movimiento.BOXmoverDiagonalDerecha) ,  FNegra1.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra2.movimiento.BOXmoverDiagonalDerecha) ,  FNegra2.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra3.movimiento.BOXmoverDiagonalDerecha) ,  FNegra3.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra4.movimiento.BOXmoverDiagonalDerecha) ,  FNegra4.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra5.movimiento.BOXmoverDiagonalDerecha) ,  FNegra5.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra6.movimiento.BOXmoverDiagonalDerecha) ,  FNegra6.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra7.movimiento.BOXmoverDiagonalDerecha) ,  FNegra7.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra8.movimiento.BOXmoverDiagonalDerecha) ,  FNegra8.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra9.movimiento.BOXmoverDiagonalDerecha) ,  FNegra9.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra10.movimiento.BOXmoverDiagonalDerecha) ,  FNegra10.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra11.movimiento.BOXmoverDiagonalDerecha) ,  FNegra11.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra12.movimiento.BOXmoverDiagonalDerecha) ,  FNegra12.movimiento.LBLmoverDiagonalDerecha);
+
+    gtk_container_add(GTK_CONTAINER(FBlanca1.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca1.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca2.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca2.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca3.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca3.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca4.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca4.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca5.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca5.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca6.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca6.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca7.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca7.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca8.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca8.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca9.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca9.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca10.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca10.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca11.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca11.movimiento.LBLmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca12.movimiento.BOXmoverDiagonalDerecha) ,  FBlanca12.movimiento.LBLmoverDiagonalDerecha);
+
+//Agregando la caja contenedora BOX a cada menu
+    gtk_container_add(GTK_CONTAINER(FNegra1.movimiento.OPmoverDiagonalDerecha) ,  FNegra1.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra2.movimiento.OPmoverDiagonalDerecha) ,  FNegra2.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra3.movimiento.OPmoverDiagonalDerecha) ,  FNegra3.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra4.movimiento.OPmoverDiagonalDerecha) ,  FNegra4.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra5.movimiento.OPmoverDiagonalDerecha) ,  FNegra5.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra6.movimiento.OPmoverDiagonalDerecha) ,  FNegra6.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra7.movimiento.OPmoverDiagonalDerecha) ,  FNegra7.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra8.movimiento.OPmoverDiagonalDerecha) ,  FNegra8.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra9.movimiento.OPmoverDiagonalDerecha) ,  FNegra9.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra10.movimiento.OPmoverDiagonalDerecha) ,  FNegra10.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra11.movimiento.OPmoverDiagonalDerecha) ,  FNegra11.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FNegra12.movimiento.OPmoverDiagonalDerecha) ,  FNegra12.movimiento.BOXmoverDiagonalDerecha);
+
+    gtk_container_add(GTK_CONTAINER(FBlanca1.movimiento.OPmoverDiagonalDerecha) ,  FBlanca1.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca2.movimiento.OPmoverDiagonalDerecha) ,  FBlanca2.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca3.movimiento.OPmoverDiagonalDerecha) ,  FBlanca3.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca4.movimiento.OPmoverDiagonalDerecha) ,  FBlanca4.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca5.movimiento.OPmoverDiagonalDerecha) ,  FBlanca5.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca6.movimiento.OPmoverDiagonalDerecha) ,  FBlanca6.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca7.movimiento.OPmoverDiagonalDerecha) ,  FBlanca7.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca8.movimiento.OPmoverDiagonalDerecha) ,  FBlanca8.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca9.movimiento.OPmoverDiagonalDerecha) ,  FBlanca9.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca10.movimiento.OPmoverDiagonalDerecha) ,  FBlanca10.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca11.movimiento.OPmoverDiagonalDerecha) ,  FBlanca11.movimiento.BOXmoverDiagonalDerecha);
+    gtk_container_add(GTK_CONTAINER(FBlanca12.movimiento.OPmoverDiagonalDerecha) ,  FBlanca12.movimiento.BOXmoverDiagonalDerecha);
+
 }
 
 void FNconectarMenusPiezas(){ //Conecta los Menús creados a las piezas
@@ -1271,6 +1515,19 @@ void FNmostrarOPmenusPiezas(){ //(DEPRECADO) Muestra las opciones de los menús
     gtk_widget_show_all(FNegra11.movimiento.OPmoverIzquierda);
     gtk_widget_show_all(FNegra12.movimiento.OPmoverIzquierda);
 
+    gtk_widget_show_all(FNegra1.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra2.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra3.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra4.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra5.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra6.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra7.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra8.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra9.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra10.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra11.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FNegra12.movimiento.OPmoverDiagonalDerecha);
+
     //Jugador 2
     gtk_widget_show_all(FBlanca1.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca2.movimiento.OPmoverArriba);
@@ -1323,6 +1580,19 @@ void FNmostrarOPmenusPiezas(){ //(DEPRECADO) Muestra las opciones de los menús
     gtk_widget_show_all(FBlanca10.movimiento.OPmoverIzquierda);
     gtk_widget_show_all(FBlanca11.movimiento.OPmoverIzquierda);
     gtk_widget_show_all(FBlanca12.movimiento.OPmoverIzquierda);
+
+    gtk_widget_show_all(FBlanca1.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca2.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca3.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca4.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca5.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca6.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca7.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca8.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca9.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca10.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca11.movimiento.OPmoverDiagonalDerecha);
+    gtk_widget_show_all(FBlanca12.movimiento.OPmoverDiagonalDerecha);
 
 }
 
@@ -1446,6 +1716,36 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca12.Pieza);
+
+        ///DIAGONAL DERECHA
+        ///Mover
+        //Jugador 1
+        g_signal_connect_swapped(G_OBJECT(FNegra1.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra1.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra2.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra2.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra3.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra3.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra4.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra4.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra5.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra5.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra6.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra7.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra10.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra11.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra12.Pieza);
+
+        //Jugador 2
+        g_signal_connect_swapped(G_OBJECT(FBlanca1.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca1.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca2.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca2.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca3.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca3.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca4.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca4.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca5.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca5.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca6.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca7.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca10.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca11.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca12.Pieza);
 
 
 }
@@ -2351,6 +2651,28 @@ int siLugarEstaOcupado(int K, int L, int sentido){ //Si retorna true es porque s
             return true;
         }
     }
+    if(sentido == DIAGONAL_DERECHA_ABAJO){//verificando diagonal derecha hacia abajo
+        if(posicionPiezas[K+1][L+1] !=0){
+            return true;
+        }
+    }
+
+    if(sentido == DIAGONAL_DERECHA_ARRIBA){//verificando diagonal derecha hacia arriba
+        if(posicionPiezas[K+1][L-1] !=0){
+            return true;
+        }
+    }
+    if(sentido == DIAGONAL_IZQUIERDA_ABAJO){//verificando diagonal izquierda hacia abajo
+        if(posicionPiezas[K-1][L+1] !=0){
+            return true;
+        }
+    }
+
+    if(sentido == DIAGONAL_IZQUIERDA_ARRIBA){//verificando diagonal derecha hacia arriba
+        if(posicionPiezas[K-1][L-1] !=0){
+            return true;
+        }
+    }
     return false;
 }
 
@@ -2368,12 +2690,36 @@ int siSobrePasaLimites (int filaOcolumna, int sentido){ //Si retorna true, se in
     }
 
     if(sentido == DERECHA){//verificando derecha
-        if(filaOcolumna > 7){
+        if(filaOcolumna > 5){
             return true;
         }
     }
 
     if(sentido == IZQUIERDA){//verificando izquierda
+        if(filaOcolumna < 0){
+            return true;
+        }
+    }
+
+    if(sentido == DIAGONAL_DERECHA_ABAJO){//verificando derecha
+        if(filaOcolumna > 5){
+            return true;
+        }
+    }
+
+    if(sentido == DIAGONAL_DERECHA_ARRIBA){//verificando izquierda
+        if(filaOcolumna < 0){
+            return true;
+        }
+    }
+
+    if(sentido == DIAGONAL_IZQUIERDA_ABAJO){//verificando derecha
+        if(filaOcolumna < 0){
+            return true;
+        }
+    }
+
+    if(sentido == DIAGONAL_IZQUIERDA_ARRIBA){//verificando izquierda
         if(filaOcolumna < 0){
             return true;
         }
@@ -2400,8 +2746,8 @@ void FNmoverArriba(GtkWidget *pieza){ //Mueve la pieza que recibe una posición 
                                     printf("\a");
                                 }
                                 else{
-                                    if(Jugador1.TurnoContador >= 4 || Jugador2.TurnoContador >= 4){
-                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Los turnos por cada jugador, no pueden superar 4 movimientos \n\n");
+                                    if(Jugador1.TurnoContador >=1 || Jugador2.TurnoContador >= 1){
+                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
 //                                                goto salirFNmoverArriba;
                                     }
                                     else{
@@ -2460,8 +2806,8 @@ void FNmoverAbajo(GtkWidget *pieza){ //Mueve la pieza que recibe una posición a
                                     printf("\a");
                                 }
                                 else{
-                                    if(Jugador1.TurnoContador >= 4 || Jugador2.TurnoContador >= 4){
-                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Los turnos por cada jugador, no pueden superar 4 movimientos \n\n");
+                                    if(Jugador1.TurnoContador >= 1 || Jugador2.TurnoContador >= 1){
+                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
                                         goto salirFNmoverAbajo;
                                     }
                                     else{
@@ -2513,7 +2859,7 @@ void FNmoverDerecha(GtkWidget *pieza){ //Mueve la pieza que recibe una posición
             if(piezaActual == posicionPiezas[I][J]){
                 for(K = 0; K < 5; K++){
                     for(L = 0; L < 5; L++){
-                        if((I == K) && (J == L)){
+                        if((I != K) && (J == L)){
                             if(siSobrePasaLimites(L+1, DERECHA)){
                                 FNmensajeDialogo(formDialogo.Ventana, "\n\n No intentes mover la pieza fuera del trablero!\n");
                                 printf("\a");
@@ -2524,8 +2870,8 @@ void FNmoverDerecha(GtkWidget *pieza){ //Mueve la pieza que recibe una posición
                                     printf("\a");
                                 }
                                 else{
-                                    if(Jugador1.TurnoContador >= 4 || Jugador2.TurnoContador >= 4){
-                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Los turnos por cada jugador, no pueden superar 4 movimientos \n\n");
+                                    if(Jugador1.TurnoContador >= 1 || Jugador2.TurnoContador >= 1){
+                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
                                         goto salirFNmoverDerecha;
                                     }
                                     else{
@@ -2566,6 +2912,66 @@ void FNmoverDerecha(GtkWidget *pieza){ //Mueve la pieza que recibe una posición
 
 }
 
+void FNmoverDiagonalDerecha(GtkWidget *pieza){ //Mueve la pieza que recibe una posición a la diagonal derecha
+    FNpiezaClickeada(pieza);
+
+    for(I = 0; I < 5; I++){
+        for(J = 0; J < 5; J++){
+            if(piezaActual == posicionPiezas[I][J]){
+                for(K = 0; K < 5; K++){
+                    for(L = 0; L < 5; L++){
+                        if((I != K) && (J == L)){
+                            if(siSobrePasaLimites(L+1, DERECHA)){
+                                FNmensajeDialogo(formDialogo.Ventana, "\n\n No intentes mover la pieza fuera del trablero!\n");
+                                printf("\a");
+                            }
+                            else{
+                                if(siLugarEstaOcupado(K, L, DERECHA)){
+                                    FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
+                                    printf("\a");
+                                }
+                                else{
+                                    if(Jugador1.TurnoContador >= 1 || Jugador2.TurnoContador >= 1){
+                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
+                                        goto salirFNmoverDerecha;
+                                    }
+                                    else{
+                                        switch(jugadorActual){
+                                            case J1:
+                                                Jugador1.TurnoContador++;
+                                                sprintf(Jugador1.TurnoArray, "%d", Jugador1.TurnoContador);
+                                                gtk_label_set_text(GTK_LABEL(Jugador1.TurnoCantidadMovimientos), Jugador1.TurnoArray);
+                                            break;
+                                            case J2:
+                                                Jugador2.TurnoContador++;
+                                                sprintf(Jugador2.TurnoArray, "%d", Jugador2.TurnoContador);
+                                                gtk_label_set_text(GTK_LABEL(Jugador2.TurnoCantidadMovimientos), Jugador2.TurnoArray);
+                                            break;
+                                        }
+                                        gtk_layout_move(GTK_LAYOUT(formJuego.Layout), pieza, coordenadasTableroX[K][L+1], coordenadasTableroY[K][L]);
+                                        goto actualizarPosicionPiezas;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    actualizarPosicionPiezas:
+        posicionPiezas[I+1][J+1] = piezaActual;
+        posicionPiezas[I][J] = 0;
+//        pesoPiezas[I][J+1] = pesoActual;
+  //      pesoPiezas[I][J] = 0;
+        queJugador[I+1][J+1] = jugadorActual;
+        queJugador[I][J] = 0;
+    //    FNimprimirMatrices();
+    salirFNmoverDerecha:
+        printf(" ");
+
+}
 void FNmoverIzquierda(GtkWidget *pieza){ //Mueve la pieza que recibe una posición a la izquierda
 
     FNpiezaClickeada(pieza);
@@ -2586,8 +2992,8 @@ void FNmoverIzquierda(GtkWidget *pieza){ //Mueve la pieza que recibe una posici�
                                     printf("\a");
                                 }
                                 else{
-                                    if(Jugador1.TurnoContador >= 4 || Jugador2.TurnoContador >= 4){
-                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Los turnos por cada jugador, no pueden superar 4 movimientos \n\n");
+                                    if(Jugador1.TurnoContador >= 1 || Jugador2.TurnoContador >= 1){
+                                        FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
                                         goto salirFNmoverIzquierda;
                                     }
                                     else{
@@ -2635,62 +3041,73 @@ void habilitarOPmovimientosJ1(){ //Habilita las opciones de movimiento del Jugad
     gtk_widget_show_all(FNegra1.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra1.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra1.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra1.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra2.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra2.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra2.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra2.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra2.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra3.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra3.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra3.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra3.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra3.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra4.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra4.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra4.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra4.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra4.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra5.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra5.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra5.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra5.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra5.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra6.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra6.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra6.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra6.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra6.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra7.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra7.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra7.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra7.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra7.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra8.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra8.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra8.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra8.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra8.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra9.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra9.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra9.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra9.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra9.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra10.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra10.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra10.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra10.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra10.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra11.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra11.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra11.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra11.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FNegra11.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FNegra12.movimiento.OPmoverArriba);
     gtk_widget_show_all(FNegra12.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FNegra12.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FNegra12.movimiento.OPmoverIzquierda);
-
+    gtk_widget_show_all(FNegra12.movimiento.OPmoverDiagonalDerecha);
 }
 
 void deshabilitarOPmovimientosJ1(){ //Deshabilita las opciones de movimiento del Jugador 1
@@ -2700,186 +3117,222 @@ void deshabilitarOPmovimientosJ1(){ //Deshabilita las opciones de movimiento del
     gtk_widget_hide(FNegra1.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra1.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra1.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra1.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra2.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra2.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra2.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra2.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra2.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra3.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra3.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra3.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra3.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra3.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra4.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra4.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra4.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra4.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra4.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra5.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra5.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra5.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra5.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra5.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra6.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra6.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra6.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra6.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra6.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra7.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra7.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra7.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra7.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra7.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra8.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra8.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra8.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra8.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra8.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra9.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra9.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra9.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra9.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra9.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra10.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra10.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra10.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra10.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra10.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra11.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra11.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra11.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra11.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra11.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FNegra12.movimiento.OPmoverArriba);
     gtk_widget_hide(FNegra12.movimiento.OPmoverAbajo);
     gtk_widget_hide(FNegra12.movimiento.OPmoverDerecha);
     gtk_widget_hide(FNegra12.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FNegra12.movimiento.OPmoverDiagonalDerecha);
 }
 
 void habilitarOPmovimientosJ2(){ //Habilita las opciones de movimiento del Jugador 1
-
-    //Jugador 2
-
+    //Jugador 1
     gtk_widget_show_all(FBlanca1.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca1.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca1.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca1.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca1.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca2.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca2.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca2.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca2.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca2.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca3.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca3.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca3.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca3.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca3.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca4.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca4.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca4.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca4.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca4.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca5.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca5.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca5.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca5.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca5.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca6.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca6.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca6.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca6.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca6.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca7.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca7.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca7.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca7.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca7.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca8.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca8.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca8.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca8.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca8.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca9.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca9.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca9.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca9.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca9.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca10.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca10.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca10.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca10.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca10.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca11.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca11.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca11.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca11.movimiento.OPmoverIzquierda);
+    gtk_widget_show_all(FBlanca11.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_show_all(FBlanca12.movimiento.OPmoverArriba);
     gtk_widget_show_all(FBlanca12.movimiento.OPmoverAbajo);
     gtk_widget_show_all(FBlanca12.movimiento.OPmoverDerecha);
     gtk_widget_show_all(FBlanca12.movimiento.OPmoverIzquierda);
-
+    gtk_widget_show_all(FBlanca12.movimiento.OPmoverDiagonalDerecha);
 }
-void deshabilitarOPmovimientosJ2(){ //Deshabilita las opciones de movimiento del Jugador 2
+
+void deshabilitarOPmovimientosJ2(){ //Deshabilita las opciones de movimiento del Jugador 1
+
+    //Jugador 1
     gtk_widget_hide(FBlanca1.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca1.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca1.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca1.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca1.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca2.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca2.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca2.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca2.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca2.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca3.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca3.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca3.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca3.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca3.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca4.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca4.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca4.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca4.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca4.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca5.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca5.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca5.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca5.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca5.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca6.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca6.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca6.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca6.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca6.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca7.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca7.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca7.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca7.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca7.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca8.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca8.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca8.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca8.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca8.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca9.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca9.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca9.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca9.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca9.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca10.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca10.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca10.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca10.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca10.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca11.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca11.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca11.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca11.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca11.movimiento.OPmoverDiagonalDerecha);
 
     gtk_widget_hide(FBlanca12.movimiento.OPmoverArriba);
     gtk_widget_hide(FBlanca12.movimiento.OPmoverAbajo);
     gtk_widget_hide(FBlanca12.movimiento.OPmoverDerecha);
     gtk_widget_hide(FBlanca12.movimiento.OPmoverIzquierda);
+    gtk_widget_hide(FBlanca12.movimiento.OPmoverDiagonalDerecha);
 }

@@ -3485,6 +3485,7 @@ void FNmostrarOPmenusPiezas(){ //(DEPRECADO) Muestra las opciones de los menús
     gtk_widget_show_all(FNegra11.movimiento.OPsaltoIzquierda);
     gtk_widget_show_all(FNegra12.movimiento.OPsaltoIzquierda);
 
+    //-----MOVER DIAGONAL DERECHA
     gtk_widget_show_all(FNegra1.movimiento.OPmoverDiagonalDerecha);
     gtk_widget_show_all(FNegra2.movimiento.OPmoverDiagonalDerecha);
     gtk_widget_show_all(FNegra3.movimiento.OPmoverDiagonalDerecha);
@@ -3498,6 +3499,21 @@ void FNmostrarOPmenusPiezas(){ //(DEPRECADO) Muestra las opciones de los menús
     gtk_widget_show_all(FNegra11.movimiento.OPmoverDiagonalDerecha);
     gtk_widget_show_all(FNegra12.movimiento.OPmoverDiagonalDerecha);
 
+    //-----SALTO DIAGONAL DERECHA ARRIBA-------
+    gtk_widget_show_all(FNegra1.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra2.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra3.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra4.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra5.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra6.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra7.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra8.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra9.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra10.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra11.movimiento.OPsaltoDiagonalDerecha);
+    gtk_widget_show_all(FNegra12.movimiento.OPsaltoDiagonalDerecha);
+
+    //-------MOVER DIAGONAL DERECHA ARRIVA=-
     gtk_widget_show_all(FNegra1.movimiento.OPmoverDiagonalDerechaArriba);
     gtk_widget_show_all(FNegra2.movimiento.OPmoverDiagonalDerechaArriba);
     gtk_widget_show_all(FNegra3.movimiento.OPmoverDiagonalDerechaArriba);
@@ -3510,6 +3526,21 @@ void FNmostrarOPmenusPiezas(){ //(DEPRECADO) Muestra las opciones de los menús
     gtk_widget_show_all(FNegra10.movimiento.OPmoverDiagonalDerechaArriba);
     gtk_widget_show_all(FNegra11.movimiento.OPmoverDiagonalDerechaArriba);
     gtk_widget_show_all(FNegra12.movimiento.OPmoverDiagonalDerechaArriba);
+
+
+    //-------SALTO DIAGONAL DERECHA ARRIVA=-
+    gtk_widget_show_all(FNegra1.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra2.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra3.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra4.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra5.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra6.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra7.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra8.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra9.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra10.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra11.movimiento.OPsaltoDiagonalDerechaArriba);
+    gtk_widget_show_all(FNegra12.movimiento.OPsaltoDiagonalDerechaArriba);
 
     gtk_widget_show_all(FNegra1.movimiento.OPmoverDiagonalIzquierda);
     gtk_widget_show_all(FNegra2.movimiento.OPmoverDiagonalIzquierda);
@@ -3536,6 +3567,7 @@ void FNmostrarOPmenusPiezas(){ //(DEPRECADO) Muestra las opciones de los menús
     gtk_widget_show_all(FNegra10.movimiento.OPmoverDiagonalIzquierdaArriba);
     gtk_widget_show_all(FNegra11.movimiento.OPmoverDiagonalIzquierdaArriba);
     gtk_widget_show_all(FNegra12.movimiento.OPmoverDiagonalIzquierdaArriba);
+
 
     ///Jugador 2
     //---MOVER ARRIBA----

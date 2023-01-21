@@ -4915,7 +4915,7 @@ int siLugarEstaOcupado(int K, int L, int sentido){ //Si retorna true es porque s
 
     ///------SALTOS------
 
-if(sentido == SALTO_ABAJO){
+    if(sentido == SALTO_ABAJO){
         if(posicionPiezas[K + 2][L] != 0){//verificando abajo
             return true;
         }

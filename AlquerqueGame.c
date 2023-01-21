@@ -1896,7 +1896,7 @@ void FNcrearMenusPiezas(){ //Crea los menús de cada pieza, los cuales se despli
     gtk_container_add(GTK_CONTAINER(FBlanca12.movimiento.BOXsaltoAbajo) ,  FBlanca12.movimiento.LBLsaltoAbajo);
 
 //Agregando la caja contenedora BOX a cada menu
-    ///------AGREFADO DE CONTENEDOR MOVER ABAJO----------------
+    ///------AGREGADO DE CONTENEDOR MOVER ABAJO----------------
     gtk_container_add(GTK_CONTAINER(FNegra1.movimiento.OPmoverAbajo) ,  FNegra1.movimiento.BOXmoverAbajo);
     gtk_container_add(GTK_CONTAINER(FNegra2.movimiento.OPmoverAbajo) ,  FNegra2.movimiento.BOXmoverAbajo);
     gtk_container_add(GTK_CONTAINER(FNegra3.movimiento.OPmoverAbajo) ,  FNegra3.movimiento.BOXmoverAbajo);
@@ -3637,7 +3637,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FNegra12.Pieza);
@@ -3651,7 +3651,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverArriba), "button-press-event", G_CALLBACK(FNmoverArriba), FBlanca12.Pieza);
@@ -3667,7 +3667,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FNegra12.Pieza);
@@ -3681,7 +3681,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverAbajo), "button-press-event", G_CALLBACK(FNmoverAbajo), FBlanca12.Pieza);
@@ -3697,7 +3697,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra12.Pieza);
@@ -3711,7 +3711,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca12.Pieza);
@@ -3727,7 +3727,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra12.Pieza);
@@ -3741,7 +3741,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca12.Pieza);
@@ -3757,7 +3757,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FNegra12.Pieza);
@@ -3771,7 +3771,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverDiagonalDerecha), "button-press-event", G_CALLBACK(FNmoverDiagonalDerecha), FBlanca12.Pieza);
@@ -3787,7 +3787,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FNegra12.Pieza);
@@ -3801,7 +3801,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverDiagonalDerechaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalDerechaArriba), FBlanca12.Pieza);
@@ -3817,7 +3817,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FNegra12.Pieza);
@@ -3831,7 +3831,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverDiagonalIzquierda), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierda), FBlanca12.Pieza);
@@ -3847,7 +3847,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FNegra12.Pieza);
@@ -3861,7 +3861,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverDiagonalIzquierdaArriba), "button-press-event", G_CALLBACK(FNmoverDiagonalIzquierdaArriba), FBlanca12.Pieza);
@@ -3878,7 +3878,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FNegra12.Pieza);
@@ -3892,7 +3892,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPsaltoArriba), "button-press-event", G_CALLBACK(FNsaltoArriba), FBlanca12.Pieza);
@@ -3908,7 +3908,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FNegra12.Pieza);
@@ -3922,7 +3922,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPsaltoAbajo), "button-press-event", G_CALLBACK(FNsaltoAbajo), FBlanca12.Pieza);
@@ -3938,7 +3938,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FNegra12.Pieza);
@@ -3952,7 +3952,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverDerecha), "button-press-event", G_CALLBACK(FNmoverDerecha), FBlanca12.Pieza);
@@ -3968,7 +3968,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FNegra6.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra7.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra8.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FNegra9.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra10.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra11.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FNegra12.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FNegra12.Pieza);
@@ -3982,7 +3982,7 @@ void FNconectarOPMovimientosPiezas(){ //Conecta los submenús para el movimiento
         g_signal_connect_swapped(G_OBJECT(FBlanca6.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca6.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca7.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca7.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca8.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca8.Pieza);
-        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca8.Pieza);
+        g_signal_connect_swapped(G_OBJECT(FBlanca9.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca9.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca10.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca10.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca11.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca11.Pieza);
         g_signal_connect_swapped(G_OBJECT(FBlanca12.movimiento.OPmoverIzquierda), "button-press-event", G_CALLBACK(FNmoverIzquierda), FBlanca12.Pieza);
@@ -4720,6 +4720,13 @@ int desplegarMenuMovimiento(GtkWidget *widget, GdkEvent *event){ //Despliega los
     return FALSE;
 }
 void FNpiezaClickeada(GtkWidget *pieza){ //Recibe un OBJETO PIEZA y guarda en una variable la constante de la pieza que representa el OBJETO PIEZA presionado.
+
+    for(i=0;i<5;i++){
+        for(j=0;j<5;j++){
+            printf("%d ", posicionPiezas[i][j]);
+        }
+        printf("\n");
+    }
     if(pieza == FNegra1.Pieza){
         piezaActual = Negra1;
         jugadorActual = J1;
@@ -4865,6 +4872,8 @@ void FNpiezaClickeada(GtkWidget *pieza){ //Recibe un OBJETO PIEZA y guarda en un
 }
 
 int siLugarEstaOcupado(int K, int L, int sentido){ //Si retorna true es porque se intenta mover una pieza donde ya esta otra, y este intercambio solo se permite antes de iniciar la partida; tambi�n se manda una advertencia.
+
+    printf("sentido: %d ",sentido);
     if(sentido == ABAJO){
         if(posicionPiezas[K + 1][L] != 0){//verificando abajo
             return true;
@@ -4878,13 +4887,14 @@ int siLugarEstaOcupado(int K, int L, int sentido){ //Si retorna true es porque s
     }
 
     if(sentido == DERECHA){
+
         if(posicionPiezas[K][L + 1] != 0){//verificando derecha
             return true;
         }
     }
-
     if(sentido == IZQUIERDA){
-        if(posicionPiezas[K][L - 1] != 0){//verificando izquierda
+        printf("%d ", posicionPiezas[K][L]);
+        if(posicionPiezas[K][L-1] != 0){//verificando izquierda
             return true;
         }
     }

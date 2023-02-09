@@ -5959,12 +5959,22 @@ void FNmovimientoAleatorio(){
     //FNrecargarPiezas();
     MOVIMIENTO:
     int x;
-    movimientoAleatorio:
-    int P = 0;
-    int cont=0;
+//
+//        if(P==8){
+//            FNsaltoAleatorio();
+//        }
 
-    printf("\nPrand=%d ", P);
-    int Piezamovida=0;
+
+    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(Jugador1.TurnoToggle))){
+        movimientoAleatorio:
+        int P = 0;
+        int cont=0;
+
+        printf("\n");
+        printf("\n i = %d", i);printf(" j =%d ",j);
+        printf("\nP=%d  Cont=%d", P,cont);
+        printf("\nPrand=%d ", P);
+        int Piezamovida=0;
         ///MOVER ABAJO
         if(P==0){
             i= 0; j=0;
@@ -6047,11 +6057,23 @@ void FNmovimientoAleatorio(){
                 }
 
             }while(posicionPiezas[i+1][j+1] != 0||
-                    i==0 && j==1||i==0 && j==3||i==0 && j==4||
-					i==1 && j==0||i==1 && j==2||i==1 && j==4||
-					i==2 && j==1||i==2 && j==3||i==2 && j==4||
-					i==3 && j==0||i==3 && j==2||i==3 && j==4||
-					i==4 && j==0||i==4 && j==1||i==4 && j==2||i==4 && j==3||i==4 && j==4);
+                    i==0 && j==1||
+                    i==0 && j==3||
+                    i==0 && j==4||
+					i==1 && j==0||
+					i==1 && j==2||
+					i==1 && j==4||
+					i==2 && j==1||
+					i==2 && j==3||
+					i==2 && j==4||
+					i==3 && j==0||
+					i==3 && j==2||
+					i==3 && j==4||
+					i==4 && j==0||
+					i==4 && j==1||
+					i==4 && j==2||
+					i==4 && j==3||
+					i==4 && j==4);
         }
         ///MOVER DIAGONAL DERECHA ARRIBA
         if(P==5){
@@ -6065,11 +6087,23 @@ void FNmovimientoAleatorio(){
                 }
 
             }while(posicionPiezas[i-1][j+1] != 0||
-                    i==0 && j==0||i==0 && j==1||i==0 && j==2||i==0 && j==3||i==0 && j==4||
-					i==1 && j==0||i==1 && j==2||i==1 && j==4||
-					i==2 && j==1||i==2 && j==3||i==2 && j==4||
-					i==3 && j==0||i==3 && j==2||i==3 && j==4||
-					i==4 && j==1||i==4 && j==3||i==4 && j==4);
+                    i==0 && j==0||
+                    i==0 && j==1||
+                    i==0 && j==2||
+                    i==0 && j==3||
+                    i==0 && j==4||
+					i==1 && j==0||
+					i==1 && j==2||
+					i==1 && j==4||
+					i==2 && j==1||
+					i==2 && j==3||
+					i==2 && j==4||
+					i==3 && j==0||
+					i==3 && j==2||
+					i==3 && j==4||
+					i==4 && j==1||
+					i==4 && j==3||
+					i==4 && j==4);
         }
         ///MOVER DIAGONAL IZQUIERDA ABAJO
         if(P==6){
@@ -6083,11 +6117,25 @@ void FNmovimientoAleatorio(){
                 }
 
             }while(posicionPiezas[i+1][j-1] != 0||
-                    i==0 && j==0||i==0 && j==1||i==0 && j==2||i==0 && j==3||i==0 && j==4||
-					i==1 && j==0||i==1 && j==2||i==1 && j==4||
-					i==2 && j==0||i==2 && j==1||i==2 && j==3||i==2 && j==4||
-					i==3 && j==0||i==3 && j==2||i==3 && j==4||
-					i==4 && j==0||i==4 && j==1||i==4 && j==3||i==4 && j==4);
+                    i==0 && j==0||
+                    i==0 && j==1||
+                    i==0 && j==2||
+                    i==0 && j==3||
+                    i==0 && j==4||
+					i==1 && j==0||
+					i==1 && j==2||
+					i==1 && j==4||
+					i==2 && j==0||
+					i==2 && j==1||
+					i==2 && j==3||
+					i==2 && j==4||
+					i==3 && j==0||
+					i==3 && j==2||
+					i==3 && j==4||
+					i==4 && j==0||
+					i==4 && j==1||
+					i==4 && j==3||
+					i==4 && j==4);
         }
         ///MOVER DIAGONAL IZQUIERDA ARRIBA
         if(P==7){
@@ -6096,26 +6144,33 @@ void FNmovimientoAleatorio(){
                 i=rand()%5; j=rand()%5;
                 cont++;
                 if(cont==6){
-                    P=8;
+                    goto movimientoAleatorio;
                     cont=0;
                 }
 
             }while(posicionPiezas[i-1][j-1] != 0||
-                    i==0 && j==0||i==0 && j==1||i==0 && j==2||i==0 && j==3||i==0 && j==4||
-					i==1 && j==0||i==1 && j==2||i==1 && j==4||
-					i==2 && j==0||i==2 && j==1||i==2 && j==3||i==2 && j==4||
-					i==3 && j==0||i==3 && j==2||i==3 && j==4||
-					i==4 && j==0||i==4 && j==1||i==4 && j==3||i==4 && j==4);
+                    i==0 && j==0||
+                    i==0 && j==1||
+                    i==0 && j==2||
+                    i==0 && j==3||
+                    i==0 && j==4||
+					i==1 && j==0||
+					i==1 && j==2||
+					i==1 && j==4||
+					i==2 && j==0||
+					i==2 && j==1||
+					i==2 && j==3||
+					i==3 && j==0||
+					i==3 && j==2||
+					i==3 && j==4||
+					i==4 && j==0||
+					i==4 && j==1||
+					i==4 && j==3);
         }
-        if(P==8){
-            FNsaltoAleatorio();
-        }
-
-
-        printf("\n");
-        printf("\n i = %d", i);printf(" j =%d ",j);
-        printf("\nP=%d  Cont=%d", P,cont);
-        ///MOVER ABAJO
+//        if(P==8){
+//            FNsaltoAleatorio();
+//        }
+     ///MOVER ABAJO
         if(P==0){
             if(/*piezasJ2[randomPos]*/ Negra1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
                 if(posicionPiezas[i+1][j] == 0){
@@ -6699,7 +6754,7 @@ void FNmovimientoAleatorio(){
             }
             if(/*piezasJ2[randomPos]*/ Negra4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
                 if(posicionPiezas[i+1][j+1] == 0){
-                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    printf("\n MOVIMIENTO: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
                     gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra4.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
                     posicionPiezas[i+1][j+1] = Negra4;
                     posicionPiezas[i][j] = 0;
@@ -6833,7 +6888,7 @@ void FNmovimientoAleatorio(){
             }
             if(/*piezasJ2[randomPos]*/ Negra4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
                 if(posicionPiezas[i-1][j+1] == 0){
-                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    printf("\n MOVIMIENTO: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
                     gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra4.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
                     posicionPiezas[i-1][j+1] = Negra4;
                     posicionPiezas[i][j] = 0;
@@ -7195,15 +7250,1255 @@ void FNmovimientoAleatorio(){
                     posicionPiezas[i][j] = 0;
                     queJugador[i-1][j-1] = J1;
                     queJugador[i][j] = 0;
+                        Piezamovida=1;
+                    }
+                }
+            }
+
+        if(Piezamovida==0){
+            goto MOVIMIENTO;
+        }
+    }
+    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(Jugador2.TurnoToggle))){
+        movimientoAleatorio2:
+        int P = 0;
+        int cont=0;
+
+        printf("\n");
+        printf("\n i = %d", i);printf(" j =%d ",j);
+        printf("\nP=%d  Cont=%d", P,cont);
+        printf("\nPrand=%d ", P);
+        int Piezamovida=0;
+        ///MOVER ABAJO
+        if(P==0){
+            i= 0; j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=1;
+                    cont=0;
+                }
+            }while(posicionPiezas[i+1][j] != 0||
+                                i==4 && j==0||
+                                i==4 && j==1||
+                                i==4 && j==2||
+                                i==4 && j==3||
+                                i==4 && j==4);
+        }
+        ///MOVER ARRIBA
+        if(P==1){
+            i= 0; j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=2;
+                    cont=0;
+                }
+            }while(posicionPiezas[i-1][j] != 0||
+                                  i==0 && j==0||
+                                  i==0 && j==1||
+                                  i==0 && j==2||
+                                  i==0 && j==3||
+                                  i==0 && j==4);
+        }
+        ///MOVER DERECHA
+        if(P==2){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=3;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i][j+1] != 0||
+                i==0 && j==4||
+                i==1 && j==4||
+                i==2 && j==4||
+                i==3 && j==4||
+                i==4 && j==4);
+        }
+        ///MOVER IZQUIERDA
+        if(P==3){
+            i=0;j=0;
+            do{
+                i=rand()%4+1; j=rand()%4+1;
+                cont++;
+                if(cont==5){
+                    P=4;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i][j-1] != 0||
+                                  i==0 && j==0||
+                                  i==1 && j==0||
+                                  i==2 && j==0||
+                                  i==3 && j==0||
+                                  i==4 && j==0);
+        }
+        ///MOVER DIAGONA DERECHA ABAJO
+        if(P==4){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=5;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i+1][j+1] != 0||
+                    i==0 && j==1||i==0 && j==3||i==0 && j==4||
+					i==1 && j==0||i==1 && j==2||i==1 && j==4||
+					i==2 && j==1||i==2 && j==3||i==2 && j==4||
+					i==3 && j==0||i==3 && j==2||i==3 && j==4||
+					i==4 && j==0||i==4 && j==1||i==4 && j==2||i==4 && j==3||i==4 && j==4);
+        }
+        ///MOVER DIAGONAL DERECHA ARRIBA
+        if(P==5){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=6;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i-1][j+1] != 0||
+                    i==0 && j==0||i==0 && j==1||i==0 && j==2||i==0 && j==3||i==0 && j==4||
+					i==1 && j==0||i==1 && j==2||i==1 && j==4||
+					i==2 && j==1||i==2 && j==3||i==2 && j==4||
+					i==3 && j==0||i==3 && j==2||i==3 && j==4||
+					i==4 && j==1||i==4 && j==3||i==4 && j==4);
+        }
+        ///MOVER DIAGONAL IZQUIERDA ABAJO
+        if(P==6){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==6){
+                    P=7;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i+1][j-1] != 0||
+                    i==0 && j==0||i==0 && j==1||i==0 && j==2||i==0 && j==3||i==0 && j==4||
+					i==1 && j==0||i==1 && j==2||i==1 && j==4||
+					i==2 && j==0||i==2 && j==1||i==2 && j==3||i==2 && j==4||
+					i==3 && j==0||i==3 && j==2||i==3 && j==4||
+					i==4 && j==0||i==4 && j==1||i==4 && j==3||i==4 && j==4);
+        }
+        ///MOVER DIAGONAL IZQUIERDA ARRIBA
+        if(P==7){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==6){
+                    goto movimientoAleatorio2;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i-1][j-1] != 0||
+                    i==0 && j==0||i==0 && j==1||i==0 && j==2||i==0 && j==3||i==0 && j==4||
+					i==1 && j==0||i==1 && j==2||i==1 && j==4||
+					i==2 && j==0||i==2 && j==1||i==2 && j==3||i==2 && j==4||
+					i==3 && j==0||i==3 && j==2||i==3 && j==4||
+					i==4 && j==0||i==4 && j==1||i==4 && j==3||i==4 && j==4);
+        }
+        if(P==0){
+            if(/*piezasJ2[randomPos]*/ Blanca1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca1.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca1;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Blanca2  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca2.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca2;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca3  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca3.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca3;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca4.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca4;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca5  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca5.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca5;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca6  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca6.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca6;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca7  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca7.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca7;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca8  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca8.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca8;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca9  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca9.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca9;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca10  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca10.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca10;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca11  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca11.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca11;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca12  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j] == 0){
+                    printf("\n i+1 = %d", i+1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca12.Pieza, coordenadasTableroX[i+1][j], coordenadasTableroY[i+1][j]);
+                    posicionPiezas[i+1][j] = Blanca12;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER ARRIBA
+        if(P==1){
+            if(/*piezasJ2[randomPos]*/ Blanca1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca1.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca1;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Blanca2  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca2.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca2;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca3  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca3.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca3;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca4.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca4;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca5  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca5.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca5;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca6  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca6.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca6;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca7  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca7.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca7;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca8  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n i-1 = %d", i);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca8.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca8;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca9  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca9.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca9;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca10  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca10.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca10;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca11  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca11.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca11;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca12  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j] == 0){
+                    printf("\n Movimiento: i-1 = %d", i-1);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca12.Pieza, coordenadasTableroX[i-1][j], coordenadasTableroY[i-1][j]);
+                    posicionPiezas[i-1][j] = Blanca12;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER DERECHA
+        if(P==2){
+            if(/*piezasJ2[randomPos]*/ Blanca1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca1.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca1;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Blanca2  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca2.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca2;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca3  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca3.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca3;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca4.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca4;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca5  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca5.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca5;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca6  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca6.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca6;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca7  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca7.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca7;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca8  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n i-1 = %d", i);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca8.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca8;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca9  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca9.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca9;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca10  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca10.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca10;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca11  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca11.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca11;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca12  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j+1] == 0){
+                    printf("\n Movimiento: i = %d", i-1);printf(" j+1=%d ",j+1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca12.Pieza, coordenadasTableroX[i][j+1], coordenadasTableroY[i][j+1]);
+                    posicionPiezas[i][j+1] = Blanca12;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER IZQUIERDA
+        if(P==3){
+            if(/*piezasJ2[randomPos]*/ Blanca1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca1.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca1;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Blanca2  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca2.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca2;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca3  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca3.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca3;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca4.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca4;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca5  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca5.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca5;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca6  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca6.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca6;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca7  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca7.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca7;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca8  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n i-1 = %d", i);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca8.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca8;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca9  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca9.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca9;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca10  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca10.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca10;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca11  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca11.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca11;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca12  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca12.Pieza, coordenadasTableroX[i][j-1], coordenadasTableroY[i][j-1]);
+                    posicionPiezas[i][j-1] = Blanca12;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER DIAGONAL DERECHA ABAJO
+        if(P==4){
+            if(/*piezasJ2[randomPos]*/ Blanca1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca1.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca1;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Blanca2  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca2.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca2;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca3  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca3.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca3;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca4.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca4;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca5  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca5.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca5;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca6  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca6.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca6;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca7  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca7.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca7;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca8  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n i-1 = %d", i);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca8.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca8;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca9  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca9.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca9;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca10  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca10.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca10;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca11  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca11.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca11;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca12  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca12.Pieza, coordenadasTableroX[i+1][j+1], coordenadasTableroY[i+1][j+1]);
+                    posicionPiezas[i+1][j+1] = Blanca12;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER DIAGONAL DERECHA ARRIBA
+        if(P==5){
+            if(/*piezasJ2[randomPos]*/ Blanca1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca1.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca1;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Blanca2  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca2.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca2;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca3  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca3.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca3;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca4.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca4;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca5  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca5.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca5;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca6  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca6.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca6;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca7  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca7.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca7;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca8  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n i-1 = %d", i);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca8.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca8;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca9  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca9.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca9;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca10  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca10.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca10;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca11  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca11.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca11;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca12  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j+1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca12.Pieza, coordenadasTableroX[i-1][j+1], coordenadasTableroY[i-1][j+1]);
+                    posicionPiezas[i-1][j+1] = Blanca12;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j+1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER DIAGONAL IZQUIERDA ABAJO
+        if(P==6){
+            if(/*piezasJ2[randomPos]*/ Blanca1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca1.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca1;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Blanca2  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca2.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca2;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca3  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca3.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca3;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca4.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca4;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca5  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca5.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca5;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca6  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca6.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca6;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca7  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca7.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca7;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca8  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n i-1 = %d", i);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca8.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca8;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca9  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca9.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca9;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca10  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca10.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca10;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca11  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca11.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca11;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca12  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i+1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca12.Pieza, coordenadasTableroX[i+1][j-1], coordenadasTableroY[i+1][j-1]);
+                    posicionPiezas[i+1][j-1] = Blanca12;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i+1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER DIAGONAL IZQUIERDA ARRIBA
+        if(P==7){
+            if(/*piezasJ2[randomPos]*/ Blanca1  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca1.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca1;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Blanca2  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca2.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca2;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca3  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca3.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca3;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca4  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca4.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca4;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca5  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca5.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca5;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca6  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca6.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca6;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca7  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca7.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca7;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca8  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n i-1 = %d", i);printf(" j =%d ",j);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca8.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca8;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca9  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca9.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca9;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca10  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca10.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca10;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca11  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca11.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca11;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
+                    Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Blanca12  == posicionPiezas[i][j]){ //Si la pieza aleatoria elegida es igual a la pieza en la matriz de piezas
+                if(posicionPiezas[i-1][j-1] == 0){
+                    printf("\n Movimiento: i= %d", i);printf(" j-1 =%d ",j-1);printf("\n");
+                    gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FBlanca12.Pieza, coordenadasTableroX[i-1][j-1], coordenadasTableroY[i-1][j-1]);
+                    posicionPiezas[i-1][j-1] = Blanca12;
+                    posicionPiezas[i][j] = 0;
+                    queJugador[i-1][j-1] = J1;
+                    queJugador[i][j] = 0;
                     Piezamovida=1;
                 }
             }
         }
 
-    if(Piezamovida==0){
-        goto MOVIMIENTO;
+        if(Piezamovida==0){
+            goto MOVIMIENTO;
+        }
     }
-
     printf("\n");
     for(i=0;i<5;i++){
         for(j=0;j<5;j++){
@@ -7213,7 +8508,1051 @@ void FNmovimientoAleatorio(){
     }
                 gtk_widget_show_all(formJuego.Pantalla);
 }
+
 void FNsaltoAleatorio(){
+    srand(time(NULL));
+    //FNrecargarPiezas();
+    SALTO:
+    int x;
+//
+//        if(P==8){
+//            FNsaltoAleatorio();
+//        }
+
+
+    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(Jugador1.TurnoToggle))){
+        saltoAleatorio:
+        int P = 0;
+        int cont=0;
+
+        printf("\n");
+        printf("\n i = %d", i);printf(" j =%d ",j);
+        printf("\nP=%d  Cont=%d", P,cont);
+        printf("\nPrand=%d ", P);
+        int Piezamovida=0;
+        ///SALTO ABAJO
+        if(P==0){
+            i= 0; j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=1;
+                    cont=0;
+                }
+            }while(posicionPiezas[i+1][j]==0||queJugador[i+1][j]==J1||queJugador[i+1][j]==J2 && posicionPiezas[i+2][j]!=0||
+                   i==3 && j==0||
+                    i==3 && j==1||
+                    i==3 && j==2||
+                    i==3 && j==3||
+                    i==3 && j==4||
+                    i==4 && j==0||
+                    i==4 && j==1||
+                    i==4 && j==2||
+                    i==4 && j==3||
+                    i==4 && j==4);
+        }
+        ///SALTO ARRIBA
+        if(P==1){
+            i= 0; j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=2;
+                    cont=0;
+                }
+            }while(posicionPiezas[i-1][j]==0||queJugador[i-1][j]==J1||queJugador[i-1][j]==J2 && posicionPiezas[i-2][j]!=0||
+                    i==0 && j==0||
+                    i==0 && j==1||
+                    i==0 && j==2||
+                    i==0 && j==3||
+                    i==0 && j==4||
+                    i==1 && j==0||
+                    i==1 && j==1||
+                    i==1 && j==2||
+                    i==1 && j==3||
+                    i==1 && j==4);
+        }
+        ///SALTO DERECHA
+        if(P==2){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=3;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i][j+1]==0||queJugador[i][j+1]==J1||queJugador[i][j+1]==J2 && posicionPiezas[i][j+2]!=0||
+                    i==0 && j==3||
+                    i==1 && j==3||
+                    i==2 && j==3||
+                    i==3 && j==3||
+                    i==4 && j==3||
+                    i==0 && j==4||
+                    i==1 && j==4||
+                    i==2 && j==4||
+                    i==3 && j==4||
+                    i==4 && j==4);
+        }
+        ///SALTO iZQUIERDA
+        if(P==3){
+            i=0;j=0;
+            do{
+                i=rand()%4+1; j=rand()%4+1;
+                cont++;
+                if(cont==5){
+                    P=4;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i][j-1]==0||queJugador[i][j-1]==J1||queJugador[i][j-1]==J2 && posicionPiezas[i][j-2]!=0||
+                    i==0 && j==0||
+                    i==1 && j==0||
+                    i==2 && j==0||
+                    i==3 && j==0||
+                    i==4 && j==0||
+                    i==1 && j==0||
+                    i==2 && j==1||
+                    i==3 && j==1||
+                    i==4 && j==1||
+                    i==4 && j==1);
+        }
+        ///SALTO DIAGONA DERECHA ABAJO
+        if(P==4){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=5;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i+1][j+1] != 0||posicionPiezas[i+2][j+2]!=0||queJugador[i+1][j+1]==J1||queJugador[i+2][j+2]==J2 && posicionPiezas[i+2][j+2]!=0||
+                        i==0 && j==1||
+						i==0 && j==3||
+						i==0 && j==4||
+						i==1 && j==0||
+						i==1 && j==2||
+						i==1 && j==3||
+						i==1 && j==4||
+						i==2 && j==1||
+						i==2 && j==3||
+						i==2 && j==4||
+						i==3 && j==0||
+						i==3 && j==1||
+						i==3 && j==2||
+						i==3 && j==3||
+						i==3 && j==4||
+						i==4 && j==0||
+						i==4 && j==1||
+						i==4 && j==2||
+						i==4 && j==3||
+						i==4 && j==4);
+        }
+        ///SALTO DIAGONAL DERECHA ARRIBA
+        if(P==5){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==5){
+                    P=6;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i-2][j+2]!=0||queJugador[i-1][j+1]==J1||queJugador[i-2][j+2]==J2 && posicionPiezas[i-2][j+2]!=0||
+                    i==0 && j==0||
+                    i==0 && j==1||
+                    i==0 && j==2||
+                    i==0 && j==3||
+                    i==0 && j==4||
+					i==1 && j==0||
+					i==1 && j==1||
+					i==1 && j==2||
+					i==1 && j==3||
+					i==1 && j==4||
+					i==2 && j==1||
+					i==2 && j==3||
+					i==2 && j==4||
+					i==3 && j==0||
+					i==3 && j==2||
+					i==3 && j==4||
+					i==4 && j==1||
+					i==4 && j==3||
+					i==4 && j==4);
+        }
+        ///SALTO DIAGONAL iZQUIERDA ABAJO
+        if(P==6){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==6){
+                    P=7;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i+1][j-1] != 0||
+                    i==0 && j==0||
+                    i==0 && j==1||
+
+                    i==0 && j==3||
+
+					i==1 && j==0||
+					i==1 && j==1||
+					i==1 && j==2||
+					i==1 && j==4||
+					i==2 && j==0||
+					i==2 && j==1||
+					i==2 && j==3||
+					i==2 && j==4||
+					i==3 && j==0||
+					i==3 && j==1||
+					i==3 && j==2||
+					i==3 && j==3||
+					i==3 && j==4||
+					i==4 && j==0||
+					i==4 && j==1||
+					i==4 && j==2||
+					i==4 && j==3||
+					i==4 && j==4);
+        }
+        ///SALTO DIAGONAL iZQUIERDA ARRIBA
+        if(P==7){
+            i=0;j=0;
+            do{
+                i=rand()%5; j=rand()%5;
+                cont++;
+                if(cont==6){
+                    P=8;
+                    cont=0;
+                }
+
+            }while(posicionPiezas[i-1][j-1] != 0||
+                    i==0 && j==0||
+                    i==0 && j==1||
+                    i==0 && j==2||
+                    i==0 && j==3||
+                    i==0 && j==4||
+                    i==1 && j==0||
+                    i==1 && j==1||
+                    i==1 && j==2||
+                    i==1 && j==4||
+                    i==2 && j==0||
+                    i==2 && j==1||
+                    i==2 && j==3||
+                    i==3 && j==0||
+                    i==3 && j==1||
+                    i==3 && j==2||
+                    i==3 && j==3||
+                    i==3 && j==4||
+                    i==4 && j==0||
+                    i==4 && j==1||
+                    i==4 && j==2||
+                    i==4 && j==3||
+                    i==4 && j==4);
+        }
+        if(P==8){
+            FNmovimientoAleatorio();
+        }
+     ///MOVER ABAJO
+        if(P==0){
+            if(/*piezasJ2[randomPos]*/ Negra1  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra1.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Negra2  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra2.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra3  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra3.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra4  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra4.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra5  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra5.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra6  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra6.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra7  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+               if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra7.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra8  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra8.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra9  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra9.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra10  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra10.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra11  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra11.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra12  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j]==0){
+						posicionPiezas[i+2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra12.Pieza, coordenadasTableroX[i+2][j], coordenadasTableroY[i+2][j]);
+						FNcomerPieza(i+1,j);
+						posicionPiezas[i+1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j] = jugadorActual;
+						queJugador[i+1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER ARRIBA
+        if(P==1){
+            if(/*piezasJ2[randomPos]*/ Negra1  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra1.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Negra2  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra2.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra3  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra3.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+						Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra4  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra4.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra5  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra5.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra6  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra6.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra7  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra7.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra8  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra8.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra9  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra9.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra10  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra10.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra11  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra11.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra12  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i-2][j]==0){
+						posicionPiezas[i-2][j] = piezaActual;
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra12.Pieza, coordenadasTableroX[i-2][j], coordenadasTableroY[i-2][j]);
+						FNcomerPieza(i-1,j);
+						posicionPiezas[i-1][j] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i-2][j] = jugadorActual;
+						queJugador[i-1][j] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER DERECHA
+        if(P==2){
+            if(/*piezasJ2[randomPos]*/ Negra1  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra1.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Negra2  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra2.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra3  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra3.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra4  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra4.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra5  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra5.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra6  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra6.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra7  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra7.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra8  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra8.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra9  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra9.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra10  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra10.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra11  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra11.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra12  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra12.Pieza, coordenadasTableroX[i][j+2], coordenadasTableroY[i][j+2]);
+						posicionPiezas[i][j+2] = piezaActual;
+						FNcomerPieza(i,j+1);
+						posicionPiezas[i][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j+2] = jugadorActual;
+						queJugador[i][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER iZQUIERDA
+        if(P==3){
+            if(/*piezasJ2[randomPos]*/ Negra1  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra1.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Negra2  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra2.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra3  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra3.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra4  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra4.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra5  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra5.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra6  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra6.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra7  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra7.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra8  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra9.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra9  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+               if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra9.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra10  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra10.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra11  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra11.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra12  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i][j-2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra12.Pieza, coordenadasTableroX[i][j-2], coordenadasTableroY[i][j-2]);
+						posicionPiezas[i][j-2] = piezaActual;
+						FNcomerPieza(i,j-1);
+						posicionPiezas[i][j-1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i][j-2] = jugadorActual;
+						queJugador[i][j-1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+        }
+        ///MOVER DIAGONAL DERECHA ABAJO
+        if(P==4){
+            if(/*piezasJ2[randomPos]*/ Negra1  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra1.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }if(/*piezasJ2[randomPos]*/ Negra2  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra2.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra3  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra3.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra4  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra4.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra5  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra5.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra6  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra6.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra7  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra7.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra8  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra8.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra9  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra9.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra10  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra10.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra11  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra11.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+            if(/*piezasJ2[randomPos]*/ Negra12  == posicionPiezas[i][j]){ //Si ja pieza aleatoria elegida es igual a ja pieza en ja matriz de piezas
+                if(posicionPiezas[i+2][j+2]==0){
+						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), FNegra12.Pieza, coordenadasTableroX[i+2][j+2], coordenadasTableroY[i+2][j+2]);
+						posicionPiezas[i+2][j+2] = piezaActual;
+						FNcomerPieza(i+1,j+1);
+						posicionPiezas[i+1][j+1] = 0;
+						posicionPiezas[i][j] = 0;
+						queJugador[i+2][j+2] = jugadorActual;
+						queJugador[i+1][j+1] = 0;
+						queJugador[i][j] = 0;
+                        Piezamovida=1;
+                }
+            }
+        }
+        if(Piezamovida==0){
+            FNmovimientoAleatorio();
+        }
+    }
 }
 void FNpiezaClickeada(GtkWidget *pieza){ //Recibe un OBJETO PIEZA y guarda en una variable la constante de la pieza que representa el OBJETO PIEZA presionado.
     printf("FNpiezaClickeada\n");
@@ -7902,7 +10241,9 @@ void FNsaltoDerecha(GtkWidget *pieza){ //Mueve la pieza que recibe una posición
 					}
 				}
                 if(jugadorActual==J2){
-					if(posicionPiezas[K][L+1]==0||queJugador[K][L+1]==J2||queJugador[K][L+1]==J1 && posicionPiezas[K][L+2]!=0){
+					if(posicionPiezas[K][L+1]==0||
+                        queJugador[K][L+1]==J2||
+                        queJugador[K][L+1]==J1 && posicionPiezas[K][L+2]!=0){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
 						goto salirFNsaltoDerecha;
@@ -8240,18 +10581,22 @@ void FNsaltoDiagonalDerecha(GtkWidget *pieza){ //Mueve la pieza que recibe una p
         for(J = 0; J < 5; J++){
             if(posicionPiezas[I][J]==piezaActual){
                 K=I; L=J;
-                if(K==0 && L==4||
-                    K==1 && L==4||
-                    K==2 && L==4||
+                if( K==3 && L==1||
+                    K==3 && L==3||
                     K==3 && L==4||
+                    K==4 && L==0||
+                    K==4 && L==1||
+                    K==4 && L==2||
+                    K==4 && L==3||
                     K==4 && L==4||
                     K==1 && L==3||
                     K==3 && L==3||
                     K==4 && L==3||
-                    K==3 && L==1||
-                    K==4 && L==0||
-                    K==4 && L==1||
-                    K==4 && L==2){
+                    K==0 && L==4||
+                    K==1 && L==4||
+                    K==2 && L==4||
+                    K==3 && L==4||
+                    K==4 && L==4){
                     FNmensajeDialogo(formDialogo.Ventana, "\n\n No intentes mover la pieza fuera del trablero!\n");
                     goto salirFNsaltoDiagonalDerecha;
                 }
@@ -8259,11 +10604,23 @@ void FNsaltoDiagonalDerecha(GtkWidget *pieza){ //Mueve la pieza que recibe una p
 					if(posicionPiezas[K+2][L+2]!=0||
 						queJugador[K+1][L+1]==J1||
 						queJugador[K+2][L+2]==J2 && posicionPiezas[K+2][L+2]!=0||
-						K==0 && L==1||K==0 && L==3||K==0 && L==4||
-						K==1 && L==0||K==1 && L==2||K==1 && L==4||
-						K==2 && L==1||K==2 && L==3||K==2 && L==4||
-						K==3 && L==0||K==3 && L==2||K==3 && L==4||
-						K==4 && L==0||K==4 && L==1||K==4 && L==2||K==4 && L==3||K==4 && L==4){
+						K==0 && L==1||
+						K==0 && L==3||
+						K==0 && L==4||
+						K==1 && L==0||
+						K==1 && L==2||
+						K==1 && L==4||
+						K==2 && L==1||
+						K==2 && L==3||
+						K==2 && L==4||
+						K==3 && L==0||
+						K==3 && L==2||
+						K==3 && L==4||
+						K==4 && L==0||
+						K==4 && L==1||
+						K==4 && L==2||
+						K==4 && L==3||
+						K==4 && L==4){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
 						goto salirFNsaltoDiagonalDerecha;
@@ -8301,11 +10658,23 @@ void FNsaltoDiagonalDerecha(GtkWidget *pieza){ //Mueve la pieza que recibe una p
 					if(posicionPiezas[K+2][L+2]!=0||
 						queJugador[K+1][L+1]==J2||
 						queJugador[K+2][L+2]==J1 && posicionPiezas[K+2][L+2]!=0||
-						K==0 && L==1||K==0 && L==3||K==0 && L==4||
-						K==1 && L==0||K==1 && L==2||K==1 && L==4||
-						K==2 && L==1||K==2 && L==3||K==2 && L==4||
-						K==3 && L==0||K==3 && L==2||K==3 && L==4||
-						K==4 && L==0||K==4 && L==1||K==4 && L==2||K==4 && L==3||K==4 && L==4){
+						K==0 && L==1||
+						K==0 && L==3||
+						K==0 && L==4||
+						K==1 && L==0||
+						K==1 && L==2||
+						K==1 && L==4||
+						K==2 && L==1||
+						K==2 && L==3||
+						K==2 && L==4||
+						K==3 && L==0||
+						K==3 && L==2||
+						K==3 && L==4||
+						K==4 && L==0||
+						K==4 && L==1||
+						K==4 && L==2||
+						K==4 && L==3||
+						K==4 && L==4){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
 						goto salirFNsaltoDiagonalDerecha;
@@ -8445,15 +10814,33 @@ void FNsaltoDiagonalDerechaArriba(GtkWidget *pieza){ //Mueve la pieza que recibe
         for(J = 0; J < 5; J++){
             if(posicionPiezas[I][J]==piezaActual){
                 K=I; L=J;
+                if(K==0 && L==0||
+                   K==0 && L==1||
+                   K==0 && L==2||
+                   K==0 && L==3||
+                   K==0 && L==4||
+                   K==1 && L==1||
+                   K==1 && L==3||
+                   K==1 && L==4||
+                   K==2 && L==4||
+                   K==3 && L==3||
+                   K==3 && L==4||
+                   K==4 && L==4){
+                    FNmensajeDialogo(formDialogo.Ventana, "\n\n No intentes mover la pieza fuera del trablero!\n");
+                    goto salirFNsaltoDiagonalDerechaArriba;
+                }
 				if(jugadorActual==J1){
 					if(posicionPiezas[K-2][L+2]!=0||
 						queJugador[K-1][L+1]==J1||
 						queJugador[K-2][L+2]==J2 && posicionPiezas[K-2][L+2]!=0||
-						K==0 && L==1||K==0 && L==3||K==0 && L==4||
-						K==1 && L==0||K==1 && L==2||K==1 && L==4||
-						K==2 && L==1||K==2 && L==3||K==2 && L==4||
-						K==3 && L==0||K==3 && L==2||K==3 && L==4||
-						K==4 && L==0||K==4 && L==1||K==4 && L==2||K==4 && L==3||K==4 && L==4){
+                        K==1&& L==0 ||
+                        K==1&& L==2 ||
+                        K==2&& L==1 ||
+                        K==2&& L==3 ||
+                        K==3&& L==0 ||
+                        K==3&& L==2 ||
+                        K==4&& L==1 ||
+                        K==4&& L==3){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
 						goto salirFNsaltoDiagonalDerechaArriba;
@@ -8491,11 +10878,14 @@ void FNsaltoDiagonalDerechaArriba(GtkWidget *pieza){ //Mueve la pieza que recibe
 					if(posicionPiezas[K-2][L+2]!=0||
 						queJugador[K-1][L+1]==J2||
 						queJugador[K-2][L+2]==J1 && posicionPiezas[K-2][L+2]!=0||
-						K==0 && L==1||K==0 && L==3||K==0 && L==4||
-						K==1 && L==0||K==1 && L==2||K==1 && L==4||
-						K==2 && L==1||K==2 && L==3||K==2 && L==4||
-						K==3 && L==0||K==3 && L==2||K==3 && L==4||
-						K==4 && L==0||K==4 && L==1||K==4 && L==2||K==4 && L==3||K==4 && L==4){
+                        K==1&& L==0 ||
+                        K==1&& L==2 ||
+                        K==2&& L==1 ||
+                        K==2&& L==3 ||
+                        K==3&& L==0 ||
+                        K==3&& L==2 ||
+                        K==4&& L==1 ||
+                        K==4&& L==3){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
 						goto salirFNsaltoDiagonalDerechaArriba;
@@ -8635,22 +11025,46 @@ void FNsaltoDiagonalIzquierda(GtkWidget *pieza){ //Mueve la pieza que recibe una
         for(J = 0; J < 5; J++){
             if(posicionPiezas[I][J]==piezaActual){
                 K=I; L=J;
+                if(K==0 && L==0 ||
+                    K==1 && L==0 ||
+                    K==2 && L==0 ||
+                    K==3 && L==0 ||
+                    K==4 && L==0 ||
+                    K==4 && L==1 ||
+                    K==4 && L==2 ||
+                    K==4 && L==3 ||
+                    K==4 && L==4 ||
+                    K==1 && L==1 ||
+                    K==3 && L==1 ||
+                    K==3 && L==3 ){
+                    FNmensajeDialogo(formDialogo.Ventana, "\n\n No intentes mover la pieza fuera del trablero!\n");
+                    goto salirFNsaltoDiagonalIzquierda;
+                }
 				if(jugadorActual==J1){
 					if(posicionPiezas[K+2][L-2]!=0||
 						queJugador[K+1][L-1]==J1||
 						queJugador[K+2][L-2]==J2 && posicionPiezas[K+2][L-2]!=0||
-						K==0 && L==1||K==0 && L==3||K==0 && L==4||
-						K==1 && L==0||K==1 && L==2||K==1 && L==4||
-						K==2 && L==1||K==2 && L==3||K==2 && L==4||
-						K==3 && L==0||K==3 && L==2||K==3 && L==4||
-						K==4 && L==0||K==4 && L==1||K==4 && L==2||K==4 && L==3||K==4 && L==4){
+						K==0 && L==1||
+						K==0 && L==3||
+						K==1 && L==0||
+						K==1 && L==3||
+						K==1 && L==4||
+						K==2 && L==1||
+						K==2 && L==3||
+						K==3 && L==2||
+						K==3 && L==4||
+						K==4 && L==0||
+						K==4 && L==1||
+						K==4 && L==2||
+						K==4 && L==3||
+						K==4 && L==4){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
-						goto salirFNsaltoDiagonalDerechaArriba;
+						goto salirFNsaltoDiagonalIzquierda;
 					}else{
 						if(Jugador1.TurnoContador == 1 || Jugador2.TurnoContador == 1){
 							FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
-							goto salirFNsaltoDiagonalDerechaArriba;
+							goto salirFNsaltoDiagonalIzquierda;
 						}
 					}
 					if(posicionPiezas[K+2][L-2]==0){
@@ -8674,25 +11088,37 @@ void FNsaltoDiagonalIzquierda(GtkWidget *pieza){ //Mueve la pieza que recibe una
 							break;
 						}
 						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), pieza, coordenadasTableroX[K+2][L-2], coordenadasTableroY[K+2][L-2]);
-						goto salirFNsaltoDiagonalDerechaArriba;
+						goto salirFNsaltoDiagonalIzquierda;
 					}
 				}
 				if(jugadorActual==J2){
 					if(posicionPiezas[K+2][L-2]!=0||
 						queJugador[K+1][L-1]==J2||
 						queJugador[K+2][L-2]==J1 && posicionPiezas[K+2][L-2]!=0||
-						K==0 && L==1||K==0 && L==3||K==0 && L==4||
-						K==1 && L==0||K==1 && L==2||K==1 && L==4||
-						K==2 && L==1||K==2 && L==3||K==2 && L==4||
-						K==3 && L==0||K==3 && L==2||K==3 && L==4||
-						K==4 && L==0||K==4 && L==1||K==4 && L==2||K==4 && L==3||K==4 && L==4){
+						K==0 && L==1||
+						K==0 && L==3||
+						K==0 && L==4||
+						K==1 && L==0||
+						K==1 && L==2||
+						K==1 && L==4||
+						K==2 && L==1||
+						K==2 && L==3||
+						K==2 && L==4||
+						K==3 && L==0||
+						K==3 && L==2||
+						K==3 && L==4||
+						K==4 && L==0||
+						K==4 && L==1||
+						K==4 && L==2||
+						K==4 && L==3||
+						K==4 && L==4){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
-						goto salirFNsaltoDiagonalDerechaArriba;
+						goto salirFNsaltoDiagonalIzquierda;
 					}else{
 						if(Jugador1.TurnoContador == 1 || Jugador2.TurnoContador == 1){
 							FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
-							goto salirFNsaltoDiagonalDerechaArriba;
+							goto salirFNsaltoDiagonalIzquierda;
 						}
 					}
 					if(posicionPiezas[K+2][L-2]==0){
@@ -8716,7 +11142,7 @@ void FNsaltoDiagonalIzquierda(GtkWidget *pieza){ //Mueve la pieza que recibe una
 							break;
 						}
 						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), pieza, coordenadasTableroX[K+2][L-2], coordenadasTableroY[K+2][L-2]);
-						goto salirFNsaltoDiagonalDerechaArriba;
+						goto salirFNsaltoDiagonalIzquierda;
 					}
 				}
 			}
@@ -8731,7 +11157,7 @@ void FNsaltoDiagonalIzquierda(GtkWidget *pieza){ //Mueve la pieza que recibe una
     }
     printf("\n");
 
-    salirFNsaltoDiagonalDerechaArriba:
+    salirFNsaltoDiagonalIzquierda:
         printf(" ");
 
 }
@@ -8755,11 +11181,25 @@ void FNmoverDiagonalIzquierdaArriba(GtkWidget *pieza){ //Mueve la pieza que reci
             if(posicionPiezas[I][J]==piezaActual){
                 K=I; L=J;
                 if(posicionPiezas[K-1][L-1]!=0||
-					K==0 && L==0||K==0 && L==1||K==0 && L==2||K==0 && L==3||K==0 && L==4||
-					K==1 && L==0||K==1 && L==2||K==1 && L==4||
-					K==2 && L==0||K==2 && L==1||K==2 && L==3||K==2 && L==4||
-					K==3 && L==0||K==3 && L==2||K==3 && L==4||
-					K==4 && L==0||K==4 && L==1||K==4 && L==3||K==4 && L==4){
+					K==0 && L==0||
+					K==0 && L==1||
+					K==0 && L==2||
+					K==0 && L==3||
+					K==0 && L==4||
+					K==0 && L==0||
+					K==1 && L==0||
+					K==1 && L==2||
+					K==1 && L==4||
+					K==2 && L==0||
+					K==2 && L==1||
+					K==2 && L==3||
+					K==3 && L==0||
+					K==3 && L==2||
+					K==3 && L==4||
+					K==4 && L==0||
+					K==4 && L==1||
+					K==4 && L==3){
+
                     FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
                     printf("\a");
                     goto salirFNmoverDiagonalIzquierdaArriba;
@@ -8825,22 +11265,42 @@ void FNsaltoDiagonalIzquierdaArriba(GtkWidget *pieza){ //Mueve la pieza que reci
         for(J = 0; J < 5; J++){
             if(posicionPiezas[I][J]==piezaActual){
                 K=I; L=J;
+                if(K==0 && L==0||
+                    K==0 && L==1||
+                    K==0 && L==2||
+                    K==0 && L==3||
+                    K==0 && L==4||
+                    K==1 && L==0||
+                    K==1 && L==1||
+                    K==1 && L==3||
+                    K==2 && L==0||
+                    K==3 && L==0||
+                    K==3 && L==1||
+                    K==4 && L==0){
+                    FNmensajeDialogo(formDialogo.Ventana, "\n\n No intentes mover la pieza fuera del trablero!\n");
+                    goto salirFNsaltoDiagonalIzquierdaArriba;
+
+                }
 				if(jugadorActual==J1){
 					if(posicionPiezas[K-2][L-2]!=0||
 						queJugador[K-1][L-1]==J1||
 						queJugador[K-2][L-2]==J2 && posicionPiezas[K-2][L-2]!=0||
-						K==0 && L==1||K==0 && L==3||K==0 && L==4||
-						K==1 && L==0||K==1 && L==2||K==1 && L==4||
-						K==2 && L==1||K==2 && L==3||K==2 && L==4||
-						K==3 && L==0||K==3 && L==2||K==3 && L==4||
-						K==4 && L==0||K==4 && L==1||K==4 && L==2||K==4 && L==3||K==4 && L==4){
+						K==1 && L==2||
+						K==1 && L==4||
+						K==2 && L==1||
+						K==2 && L==3||
+						K==3 && L==2||
+						K==3 && L==4||
+						K==4 && L==0||
+						K==4 && L==1||
+						K==4 && L==3){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
-						goto salirFNsaltarDiagonalIzquierdaArriba;
+						goto salirFNsaltoDiagonalIzquierdaArriba;
 					}else{
 						if(Jugador1.TurnoContador == 1 || Jugador2.TurnoContador == 1){
 							FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
-							goto salirFNsaltarDiagonalIzquierdaArriba;
+							goto salirFNsaltoDiagonalIzquierdaArriba;
 						}
 					}
 					if(posicionPiezas[K-2][L-2]==0){
@@ -8864,25 +11324,29 @@ void FNsaltoDiagonalIzquierdaArriba(GtkWidget *pieza){ //Mueve la pieza que reci
 							break;
 						}
 						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), pieza, coordenadasTableroX[K-2][L-2], coordenadasTableroY[K-2][L-2]);
-						goto salirFNsaltarDiagonalIzquierdaArriba;
+						goto salirFNsaltoDiagonalIzquierdaArriba;
 					}
 				}
 				if(jugadorActual==J2){
 					if(posicionPiezas[K-2][L-2]!=0||
 						queJugador[K-1][L-1]==J2||
 						queJugador[K-2][L-2]==J1 && posicionPiezas[K-2][L-2]!=0||
-						K==0 && L==1||K==0 && L==3||K==0 && L==4||
-						K==1 && L==0||K==1 && L==2||K==1 && L==4||
-						K==2 && L==1||K==2 && L==3||K==2 && L==4||
-						K==3 && L==0||K==3 && L==2||K==3 && L==4||
-						K==4 && L==0||K==4 && L==1||K==4 && L==2||K==4 && L==3||K==4 && L==4){
+						K==1 && L==2||
+						K==1 && L==4||
+						K==2 && L==1||
+						K==2 && L==3||
+						K==3 && L==2||
+						K==3 && L==4||
+						K==4 && L==0||
+						K==4 && L==1||
+						K==4 && L==3){
 						FNmensajeDialogo(formDialogo.Ventana, "\nn NO PUEDES COLOCAR EN ESA POSICION LA FICHA\n");
 						printf("\a");
-						goto salirFNsaltarDiagonalIzquierdaArriba;
+						goto salirFNsaltoDiagonalIzquierdaArriba;
 					}else{
 						if(Jugador1.TurnoContador == 1 || Jugador2.TurnoContador == 1){
 							FNmensajeDialogo(formDialogo.Ventana, "\n\n Has llegado al limite de movimientos posibles \n\n");
-							goto salirFNsaltarDiagonalIzquierdaArriba;
+							goto salirFNsaltoDiagonalIzquierdaArriba;
 						}
 					}
 					if(posicionPiezas[K-2][L-2]==0){
@@ -8906,7 +11370,7 @@ void FNsaltoDiagonalIzquierdaArriba(GtkWidget *pieza){ //Mueve la pieza que reci
 							break;
 						}
 						gtk_layout_move(GTK_LAYOUT(formJuego.Layout), pieza, coordenadasTableroX[K-2][L-2], coordenadasTableroY[K-2][L-2]);
-						goto salirFNsaltarDiagonalIzquierdaArriba;
+						goto salirFNsaltoDiagonalIzquierdaArriba;
 					}
 				}
 			}
@@ -8921,7 +11385,7 @@ void FNsaltoDiagonalIzquierdaArriba(GtkWidget *pieza){ //Mueve la pieza que reci
     }
     printf("\n");
 
-    salirFNsaltarDiagonalIzquierdaArriba:
+    salirFNsaltoDiagonalIzquierdaArriba:
         printf(" ");
 
 }
